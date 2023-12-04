@@ -57,53 +57,25 @@ L’évaluation prendra en compte la documentation du code (doctstrings et docte
 : type des paramètres, valeurs autorisées, effets secondaires de la fonction, erreurs
 possibles ,etc.
 # 3.2 Interface
-Dans un second temps, vous pourrez mettre en place l’interface du jeu, c’est-àdire tout ce qui permet à un joueur de l’utiliser. On sera attentif à l’ergonomie
-du jeu (il doit être agréable à utiliser), à sa stabilité (il ne doit pas planter même
-quand le joueur se trompe ou réalise des actions imprévues), à son esthétique (il
-doit être joli, ou au moins pas trop repoussant. . . ).
-Pour la réalisation de cette tâche, plusieurs options peuvent être envisagées. Il
-est possible d’associer comme on le souhaite ces différentes options de réalisation
-d’interface si cela a du sens (par exemple proposer un affichage graphique et une
-saisie au terminal). Pour la V1, seul l’affichage en mode texte est demandé.
+Dans un second temps, vous pourrez mettre en place l’interface du jeu, c’est-àdire tout ce qui permet à un joueur de l’utiliser. On sera attentif à l’ergonomie du jeu (il doit être agréable à utiliser), à sa stabilité (il ne doit pas planter même quand le joueur se trompe ou réalise des actions imprévues), à son esthétique (il doit être joli, ou au moins pas trop repoussant. . . ).
+Pour la réalisation de cette tâche, plusieurs options peuvent être envisagées. Il est possible d’associer comme on le souhaite ces différentes options de réalisation d’interface si cela a du sens (par exemple proposer un affichage graphique et une saisie au terminal). Pour la V1, seul l’affichage en mode texte est demandé.
 # 3.2.1 Mode d’affichage du jeu
-Le programme peut autoriser l’une ou plusieurs des options d’affichage suivantes
-:
-• Affichage en mode texte. L’ensemble des informations du jeu (messages
-d’accueil, succession des tours des joueurs, état du plateau, règles utilisées,
-messages d’erreur, invites) doit être affiché sur le terminal. On veillera à
-la clarté des informations affichées. L’orthographe et la syntaxe doivent
-être soignées.
+Le programme peut autoriser l’une ou plusieurs des options d’affichage suivantes :
+• Affichage en mode texte. L’ensemble des informations du jeu (messages d’accueil, succession des tours des joueurs, état du plateau, règles utilisées, messages d’erreur, invites) doit être affiché sur le terminal. On veillera à la clarté des informations affichées. L’orthographe et la syntaxe doivent être soignées.
 Ce choix d’implémentation est considéré comme plus facile.
-• Affichage graphique. L’état du jeu est affiché dans une fenêtre graphique
-gérée grâce au module fltk. Il est demandé de ne pas utiliser un autre
-module graphique, même pour rendre le jeu plus joli ou plus performant.
+• Affichage graphique. L’état du jeu est affiché dans une fenêtre graphique gérée grâce au module fltk. Il est demandé de ne pas utiliser un autre module graphique, même pour rendre le jeu plus joli ou plus performant.
 L’utilisation de fltk fait partie des consignes obligatoires du projet.
 Ce choix d’implémentation est considéré comme plus difficile.
-3
 # 3.2.2 Mode de saisie des actions des joueurs
-Le programme peut autoriser l’une ou plusieurs des options de saisie suivantes ou
-un mélange des deux. Pour la V1, seule la saisie dans le terminal est demandée.
-• Saisie des actions sur le terminal. Toutes les actions des joueurs se font
-en tapant du texte sur le terminal. Les invites doivent être lisibles et
-faciles à comprendre. Saisir un texte imprévu ne doit pas faire planter le
-programme. L’orthographe et la syntaxe doivent être soignées.
+Le programme peut autoriser l’une ou plusieurs des options de saisie suivantes ou un mélange des deux. Pour la V1, seule la saisie dans le terminal est demandée.
+• Saisie des actions sur le terminal. Toutes les actions des joueurs se fonten tapant du texte sur le terminal. Les invites doivent être lisibles etfaciles à comprendre. Saisir un texte imprévu ne doit pas faire planter leprogramme. L’orthographe et la syntaxe doivent être soignées.
 Ce choix d’implémentation est considéré comme plus facile.
-• Saisie des actions à l’aide de la souris ou du clavier. Les joueurs interagissent avec le jeu en cliquant sur les objets représentés sur la fenêtre, en
-pressant des touches du clavier ou en combinant ces deux types d’actions.
-Les événements sont gérés avec les fonctions fournies par fltk. Bien
-entendu, cela n’a de sens que si le jeu propose une interface graphique.
+• Saisie des actions à l’aide de la souris ou du clavier. Les joueurs interagissent avec le jeu en cliquant sur les objets représentés sur la fenêtre, enpressant des touches du clavier ou en combinant ces deux types d’actions.Les événements sont gérés avec les fonctions fournies par fltk. Bien entendu, cela n’a de sens que si le jeu propose une interface graphique.
 Ce choix d’implémentation est considéré comme plus difficile.
 # 4 Améliorations et variantes (optionnelles)
-Il est demandé de n’implémenter les améliorations et variantes que si vous avez
-terminé la V2. Si votre V2 ne fonctionne pas, vous n’obtiendrez pas de points
-avec les améliorations.
+Il est demandé de n’implémenter les améliorations et variantes que si vous avezterminé la V2. Si votre V2 ne fonctionne pas, vous n’obtiendrez pas de pointsavec les améliorations.
 # 4.1 Variante : Positionnement aléatoire des billes
-À la place de la phase préliminaire, on peut considérer une variante du jeu
-où les billes des joueurs sont initialement disposées aléatoirement sur la grille.
-Implémentez une fonction qui permet de disposer les billes aléatoirement. Dans
-un premier temps, on peut autoriser à ce que les billes tombent sur des trous
-(auquel cas le joueur correspondant est désavantagé). Dans un second temps, on
-s’assurera que les billes tombent sur des cases sans trou.
+À la place de la phase préliminaire, on peut considérer une variante du jeuoù les billes des joueurs sont initialement disposées aléatoirement sur la grille.Implémentez une fonction qui permet de disposer les billes aléatoirement. Dansun premier temps, on peut autoriser à ce que les billes tombent sur des trous(auquel cas le joueur correspondant est désavantagé). Dans un second temps, ons’assurera que les billes tombent sur des cases sans trou.
 # 4.2 Améliorations de l’ergonomie
 Une première piste d’amélioration possible consiste à ajouter des élémentsd’ergonomie au jeu. On pourra par exemple ajouter des menus graphiques, unhabillage, pourquoi pas une animation des déplacements des pions ou d’autresaméliorations visuelles.D’autres améliorations possibles concernent les fonctionnalités du jeu proprementdites. On pourra par exemple ajouter de nouvelles actions liées à des touchesdu clavier : annulation ou rétablissement des coups précédents, sauvegarde ouchargement de partie (voir le paragraphe suivant), etc.
 # 4.3 Codage et sauvegarde des parties
