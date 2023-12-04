@@ -1,61 +1,31 @@
 # Projet-AP1
-L’objectif de ce projet est d’implémenter un jeu de stratégie multi-joueur appelé
-Pièges ! (Stay alive! en anglais), mis au point par Milton Bradley en 19711.
+L’objectif de ce projet est d’implémenter un jeu de stratégie multi-joueur appelé Pièges ! (Stay alive! en anglais), mis au point par Milton Bradley en 19711.
 # 1 Règles du jeu
-Le jeu est constitué d’une grille 7×7, dotée de 14 tirettes, 7 horizontales (oranges)
-et 7 verticales (blanches). Chaque tirette a un nombre fixé de trous, et peut
-être placée dans trois positions, en poussant ou en tirant sur ses extrémités. À
-chaque point de la grille, lorsque deux trous sont superposés (celui de la tirette
-verticale et celui de la tirette horizontale), la bille située au-dessus tombe, et le
-joueur perd sa bille. Le jeu se joue à 2, 3 ou 4 joueurs, chacun disposant de 5
-Stay Alive, site officiel du jeu. Voir aussi la pub française de 1994.
-billes de sa couleur choisie. L’objectif du jeu est d’être le dernier joueur à avoir
-au moins une bille sur le plateau.
+Le jeu est constitué d’une grille 7×7, dotée de 14 tirettes, 7 horizontales (oranges) et 7 verticales (blanches). Chaque tirette a un nombre fixé de trous, et peut être placée dans trois positions, en poussant ou en tirant sur ses extrémités. À chaque point de la grille, lorsque deux trous sont superposés (celui de la tirette verticale et celui de la tirette horizontale), la bille située au-dessus tombe, et le joueur perd sa bille. Le jeu se joue à 2, 3 ou 4 joueurs, chacun disposant de 5 Stay Alive, site officiel du jeu. Voir aussi la pub française de 1994. billes de sa couleur choisie. L’objectif du jeu est d’être le dernier joueur à avoir au moins une bille sur le plateau.
 # 1.1 Phase préliminaire
-Au début de la partie, les joueurs placent les tirettes dans des positions aléatoires.
-Ensuite, chacun à leur tour, ils placent une bille sur la grille, aux endroits où il
-n’y a pas de trou. Lorsque toutes les billes sont placées, le jeu peu commencer.
+Au début de la partie, les joueurs placent les tirettes dans des positions aléatoires. Ensuite, chacun à leur tour, ils placent une bille sur la grille, aux endroits où il n’y a pas de trou. Lorsque toutes les billes sont placées, le jeu peu commencer.
 # 1.2 Partie
-Le jeu se joue au tour par tour. À son tour, un joueur choisit une tirette et
-la déplace d’un cran dans le sens qu’il souhaite dans le but de faire tomber les
-billes des joueurs adverses.
+Le jeu se joue au tour par tour. À son tour, un joueur choisit une tirette et la déplace d’un cran dans le sens qu’il souhaite dans le but de faire tomber les billes des joueurs adverses.
 # 1.3 Fin de partie
 Le gagnant est le dernier joueur à avoir des billes en jeu.
 # 2 Objectif intermédiaire (V1)
-Vous pouvez dans un premier temps travailler sur une version plus simple du jeu
-(appelée V1), dont la réalisation vous garantit la moyenne à l’UE. Dans cette
-version :
-• Il n’y a qu’un seul joueur, et son objectif est d’éliminer les billes en le
-moins de coups possibles. Il vous faut donc compter le nombre de coups
-joués.
-• Les tirettes sont circulaires, c’est-à-dire que vous pouvez les faire avancer
-et reculer autant que vous le souhaitez.
-• La position des billes et la position des tirettes sont hardcodées : c’est
-vous qui définissez les variables dans votre code, et vous n’avez pas à
-implémenter la phase préliminaire du jeu (positionnement aléatoire des
-tirettes et positionnement des billes par les joueurs).
-• Le jeu se joue dans le terminal.
-Dans la suite, cette version est appelée V1, et la version qui implémente toutes
-les règles du jeu est appelée V2.
+Vous pouvez dans un premier temps travailler sur une version plus simple du jeu (appelée V1), dont la réalisation vous garantit la moyenne à l’UE. Dans cette version :
+• Il n’y a qu’un seul joueur, et son objectif est d’éliminer les billes en le moins de coups possibles. Il vous faut donc compter le nombre de coups joués.
+• Les tirettes sont circulaires, c’est-à-dire que vous pouvez les faire avancer et reculer autant que vous le souhaitez.
+• La position des billes et la position des tirettes sont hardcodées : c’est vous qui définissez les variables dans votre code, et vous n’avez pas à implémenter la phase préliminaire du jeu (positionnement aléatoire des tirettes et positionnement des billes par les joueurs).
+• Le jeu se joue dans le terminal. Dans la suite, cette version est appelée V1, et la version qui implémente toutes les règles du jeu est appelée V2.
 # 3 Travail demandé
 # 3.1 Moteur du jeu
-Dans cette première tâche, vous devez choisir des structures de données pour
-représenter l’état du jeu à tout moment de la partie :
+Dans cette première tâche, vous devez choisir des structures de données pour représenter l’état du jeu à tout moment de la partie :
 • La position des billes sur la grille
-2
-• La position des tirettes et la position de leurs trous
-Il vous faudra ensuite implémenter les fonctions de base du moteur du jeu :
+• La position des tirettes et la position de leurs trous Il vous faudra ensuite implémenter les fonctions de base du moteur du jeu :
 • Une fonction qui déplace une tirette
-• Une fonction qui met à jour les positions des billes, en faisant tomber les
-billes situées au-dessus de trous
-Dans la V2, il vous est de plus demandé : - Une fonction qui génère aléatoirement
-une tirette, avec au moins un trou (sinon on ne peut pas gagner !) - Une fonction
-qui permet de placer une bille d’un joueur sur la grille (pour la phase préliminaire)
-Dans cette tâche, il vous est demandé de ne pas réaliser d’actions de saisie,
-d’affichage ou de dessin : cela viendra plus tard.
-L’évaluation prendra en compte la documentation du code (doctstrings et doctests)
-: type des paramètres, valeurs autorisées, effets secondaires de la fonction, erreurs
-possibles ,etc.
+• Une fonction qui met à jour les positions des billes, en faisant tomber les billes situées au-dessus de trous
+Dans la V2, il vous est de plus demandé : 
+- Une fonction qui génère aléatoirement une tirette, avec au moins un trou (sinon on ne peut pas gagner !)
+- Une fonction qui permet de placer une bille d’un joueur sur la grille (pour la phase préliminaire)
+Dans cette tâche, il vous est demandé de ne pas réaliser d’actions de saisie, d’affichage ou de dessin : cela viendra plus tard.
+L’évaluation prendra en compte la documentation du code (doctstrings et doctests) : type des paramètres, valeurs autorisées, effets secondaires de la fonction, erreurs possibles ,etc.
 # 3.2 Interface
 Dans un second temps, vous pourrez mettre en place l’interface du jeu, c’est-àdire tout ce qui permet à un joueur de l’utiliser. On sera attentif à l’ergonomie du jeu (il doit être agréable à utiliser), à sa stabilité (il ne doit pas planter même quand le joueur se trompe ou réalise des actions imprévues), à son esthétique (il doit être joli, ou au moins pas trop repoussant. . . ).
 Pour la réalisation de cette tâche, plusieurs options peuvent être envisagées. Il est possible d’associer comme on le souhaite ces différentes options de réalisation d’interface si cela a du sens (par exemple proposer un affichage graphique et une saisie au terminal). Pour la V1, seul l’affichage en mode texte est demandé.
