@@ -25,6 +25,16 @@ def deplacer_bas(grille, colonne):
     longueur = len(grille)
     for ligne in grille:
 
+
+#Programme principal 
+
+
+if len(sys.argv) != 3:
+    print("Erreur : le jeu doit être lancé comme ceci : python3 jeu.py <nombre de joueur>")
+    sys.exit(1)
+NbJoueur = sys.argv[1].lower()
+
+
 plateau = creation_grille()
 print(plateau)
 test = [False, True, True, False, False, False, True],
