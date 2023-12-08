@@ -11,6 +11,16 @@ def creation_grille():
         lst.append(lst2)
     return lst
 
+def creation_tirette():
+    lst = []
+    for i in range():
+        x = randint(0,1)
+        lst2.append(x])
+    lst2 = [True,False,False,True,False,False,True]
+        for k in range (7):
+            lst.append(lst2)
+        return lst
+
 def deplacer_droite(tirette):
     last_val = tirette.pop()
     tirette.insert(0, last_val)
@@ -21,29 +31,22 @@ def deplacer_gauche(tirette):
     del tirette[0]
     tirette.insert(x, prem_val)
 
-def deplacer_bas(grille, colonne):
-    longueur = len(grille)
-    for ligne in grille:
 
 
 #Programme principal 
 
-
-if len(sys.argv) != 3:
-    print("Erreur : le jeu doit être lancé comme ceci : python3 jeu.py <nombre de joueur>")
-    sys.exit(1)
-NbJoueur = sys.argv[1].lower()
-
-
 plateau = creation_grille()
-print(plateau)
-test = [False, True, True, False, False, False, True],
-[False, False, True, False, False, False, True],
-[False, False, True, False, False, False, True],
-[False, False, True, False, False, False, True],
-[False, False, True, False, False, False, True],
-[False, False, True, False, False, False, True],
-[False, True, True, False, False, False, True]
-print(test)
-deplacer_gauche(test)
-print(test)
+TiretteH = creation_tirette()
+TiretteV = creation_tirette()
+
+def comparaison(PL,TV,TH):
+    for y in range(len(PL)):
+        for x in range(len(PL)):
+            if TV[y][x] == True and TH[y][x] == True:
+                PL[y][x] = True
+
+
+comparaison(plateau,TiretteV,TiretteH)
+ 
+for x in plateau:
+    print(x)
