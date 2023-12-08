@@ -2,7 +2,7 @@ import random
 import doctest
 import sys
 
-def creation_grille():
+def creation_grille_B():
     lst = []
     for k in range(7):
         lst2 = []
@@ -12,6 +12,32 @@ def creation_grille():
                 lst2.append(False)
             else:
                 lst2.append(True)
+        lst.append(lst2)
+    return lst
+
+def creation_grille_H():
+    lst = []
+    for k in range(7):
+        lst2 = []
+        for x in range(7):
+            chance = random.randint(1, 2)
+            if chance == 1:
+                lst2.append(0)
+            else:
+                lst2.append(1)
+        lst.append(lst2)
+    return lst
+
+def creation_grille_V():
+    lst = []
+    for k in range(7):
+        lst2 = []
+        for x in range(7):
+            chance = random.randint(1, 2)
+            if chance == 1:
+                lst2.append(0)
+            else:
+                lst2.append(2)
         lst.append(lst2)
     return lst
 
@@ -36,18 +62,19 @@ def deplacer_haut(grille, colonne):
         grille[x][colonne] = grille[x + 1][colonne]
     grille[len(grille)- 1][colonne] = first_val
 
-test = creation_grille()
-for x in test:
+V = creation_grille_V()
+H = creation_grille_H()
+B = creation_grille_B()
+
+for x in V:
     print(x)
-plateau = creation_grille()
-print(plateau)
-test = [False, True, True, False, False, False, True],
-[False, False, True, False, False, False, True],
-[False, False, True, False, False, False, True],
-[False, False, True, False, False, False, True],
-[False, False, True, False, False, False, True],
-[False, False, True, False, False, False, True],
-[False, True, True, False, False, False, True]
-print(test)
-deplacer_gauche(test)
-print(test)
+
+print("")
+
+for x in H:
+    print(x)
+
+print("")
+
+for x in B:
+    print(x)
