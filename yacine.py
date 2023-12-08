@@ -6,7 +6,11 @@ def creation_grille():
     for k in range(7):
         lst2 = []
         for x in range(7):
-            lst2.append(False)
+            chance = random.randint(1, 2)
+            if chance == 1:
+                lst2.append(False)
+            else:
+                lst2.append(True)
         lst.append(lst2)
     return lst
 
@@ -15,26 +19,22 @@ def deplacer_droite(tirette):
     tirette.insert(0, last_val)
 
 def deplacer_gauche(tirette):
-    x = len(tirette)-1
-    prem_val = tirette[0] 
+    first_val = tirette[0] 
     del tirette[0]
-    tirette.insert(x, prem_val)
+    tirette.insert(len(tirette) - 1, first_val)
 
 def deplacer_bas(grille, colonne):
-    longueur = len(grille)
-    for ligne in grille:
+    last_val = grille[len(grille) - 1][colonne]
+    for x in range(len(grille) - 1, 0, -1):
+        grille[x][colonne] = grille[x - 1][colonne]
+    grille[0][colonne] = last_val
 
+def deplacer_haut(grille, colonne):
+    first_val = grille[0][colonne]
+    for x in range(len(grille) - 1):
+        grille[x][colonne] = grille[x + 1][colonne]
+    grille[len(grille)- 1][colonne] = first_val
 
-
-plateau = creation_grille()
-print(plateau)
-test = [False, True, True, False, False, False, True],
-[False, False, True, False, False, False, True],
-[False, False, True, False, False, False, True],
-[False, False, True, False, False, False, True],
-[False, False, True, False, False, False, True],
-[False, False, True, False, False, False, True],
-[False, True, True, False, False, False, True]
-print(test)
-deplacer_gauche(test)
-print(test)
+test = creation_grille()
+for x in test:
+    print(x)
