@@ -14,9 +14,9 @@ def creation_grille():
 def creation_tirette():
     lst = []
     for i in range():
-        x = randint(0,1)
-        lst2.append(x])
-    lst2 = [True,False,False,True,False,False,True]
+        x = random.randint(0,1)
+        lst2.append([x])
+        lst2 = [True,False,False,True,False,False,True]
         for k in range (7):
             lst.append(lst2)
         return lst
@@ -42,7 +42,7 @@ TiretteV = creation_tirette()
 def comparaison(PL,TV,TH):
     for y in range(len(PL)):
         for x in range(len(PL)):
-            if TV[y][x] == True and TH[y][x] == True:
+            if TV[y][x] == 2 and TH[y][x] == 1:
                 PL[y][x] = True
 
 
