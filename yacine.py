@@ -1,33 +1,40 @@
+import random
+import doctest
+
 def creation_grille():
     lst = []
-    for k in range(13):
+    for k in range(7):
         lst2 = []
-        for x in range(13):
-            lst2.append(0)
+        for x in range(7):
+            lst2.append(False)
         lst.append(lst2)
     return lst
 
-def deplacer_tirets_horizontal(grille, tiret, direction):
-    for x in range(len(grille[tiret])):
-        if direction < 0:
-            if grille[tiret][x] == 1:
-                grille[tiret][x] = 0
-                grille[tiret][x - direction] = 1
-        if direction > 0:
-            x = len(grille[tiret]) - x
-            if grille[tiret][x] == 1:
-                grille[tiret][x] = 0
-                grille[tiret][x + direction] = 1
+def deplacer_droite(tirette):
+    last_val = tirette.pop()
+    tirette.insert(0, last_val)
 
-def deplacer_tirets_horizontal_merde(grille, tiret, direction):
-    for x in range(7):
-        if x - direction > 0:
-                if direction < 0:
-                    grille[tiret][x-direction] = grille[tiret][x]
-                elif direction > 0:
-                    grille[tiret][x+direction] = grille[tiret][x]
+def deplacer_gauche(tirette):
+    x = len(tirette)-1
+    prem_val = tirette[0] 
+    del tirette[0]
+    tirette.insert(x, prem_val)
+
+def deplacer_bas(grille, colonne):
+    longueur = len(grille)
+    for ligne in grille:
+
+
 
 plateau = creation_grille()
-tirette_verticale = creation_grille()
-tirette_horizontale = creation_grille()
 print(plateau)
+test = [False, True, True, False, False, False, True],
+[False, False, True, False, False, False, True],
+[False, False, True, False, False, False, True],
+[False, False, True, False, False, False, True],
+[False, False, True, False, False, False, True],
+[False, False, True, False, False, False, True],
+[False, True, True, False, False, False, True]
+print(test)
+deplacer_gauche(test)
+print(test)
