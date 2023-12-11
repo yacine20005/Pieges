@@ -1,6 +1,9 @@
 import random
 import doctest
 import sys
+from fltk import *
+
+cree_fenetre(1200,800)
 
 def creation_grille_B():
     lst = []
@@ -83,20 +86,10 @@ def fusion(LstVide, TV, TH):
             LstVide2.append(TV[y][x] + TH[y][x])
         LstVide.append(LstVide2)
 
-def comparaison(PL,TV,TH):
-    for y in range(len(PL)-1):
-        for x in range(len(PL)-1):
-            if TV[y][x] == TH[y][x]:
-                PL[y][x] = True
-
 def nb_coup(coup,nb_coup_total):
     if coup == True:
         nb_coup_total = nb_coup_total +1
     return nb_coup_total
-
-comparaison(plateau,TiretteV,TiretteH)
-
-
 
             
 comparaison(PlateauTrou,TiretteV,TiretteH)
