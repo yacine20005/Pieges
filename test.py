@@ -66,7 +66,7 @@ TiretteV = creation_grille_V()
 TiretteH = creation_grille_H()
 Bille = creation_grille_B()
 PlateauTrou = creation_grille_B()
-
+LstFusion = []
 
 def comparaison(PL,TV,TH):
     for y in range(len(PL)):
@@ -74,12 +74,21 @@ def comparaison(PL,TV,TH):
             if TV[y][x] == True and TH[y][x] == True:
                 PL[y][x] = True
 
+def fusion(LstVide, TV, TH):
+    for y in range(len(TV)):
+        LstVide2= []
+        for x in range(len(TV)):
+            LstVide2.append(TV[y][x] + TH[y][x])
+        LstVide.append(LstVide2)
+
+
 
 
             
 comparaison(PlateauTrou,TiretteV,TiretteH)
+fusion(LstFusion,TiretteV,TiretteH)
  
-for x in PlateauTrou:
+for x in LstFusion:
     print(x)
 
 
