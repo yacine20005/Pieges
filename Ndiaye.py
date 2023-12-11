@@ -4,6 +4,11 @@ import sys
 from fltk import *
 
 cree_fenetre(1200,800)
+cercle
+attend_ev()
+ferme_fenetre()
+
+
 
 def creation_grille_B():
     lst = []
