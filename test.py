@@ -67,6 +67,7 @@ TiretteH = creation_grille_H()
 Bille = creation_grille_B()
 PlateauTrou = creation_grille_B()
 LstFusion = []
+nb_coup_total = 0
 
 def comparaison(PL,TV,TH):
     for y in range(len(PL)):
@@ -75,6 +76,7 @@ def comparaison(PL,TV,TH):
                 PL[y][x] = True
 
 def fusion(LstVide, TV, TH):
+    LstVide = []
     for y in range(len(TV)):
         LstVide2= []
         for x in range(len(TV)):
@@ -87,6 +89,11 @@ def comparaison(PL,TV,TH):
             if TV[y][x] == TH[y][x]:
                 PL[y][x] = True
 
+def nb_coup(coup,nb_coup_total):
+    if coup == True:
+        nb_coup_total = nb_coup_total +1
+    return nb_coup_total
+
 comparaison(plateau,TiretteV,TiretteH)
 
 
@@ -98,6 +105,10 @@ fusion(LstFusion,TiretteV,TiretteH)
 for x in LstFusion:
     print(x)
 
+fusion(LstFusion,TiretteV,TiretteH)
+
+for x in LstFusion:
+    print(x)
 
 
 
