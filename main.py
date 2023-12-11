@@ -113,10 +113,10 @@ B = creation_grille_B()
 print("Bienvenue dans le jeu Pièges !")
 print("Les tirettes horizontaux sont composés de 0 et de 1")
 print("Tandis que les tirettes verticaux sont composés de 0 et de 2")
-print("Utilisez les fonctions suivantes pour déplacer les différentes tirettes : ")
-print("deplacer_droite(grille, ligne) \n deplacer_gauche(grille, ligne) \n deplacer_bas(grille, colonne) \n deplacer_haut(grille, colonne)")
 
-affichage_grille(V)
-affichage_grille(H)
-Fusion = fusion(V, H)
-affichage_grille(Fusion)
+while True:
+    plateau = fusion(V, H)
+    affichage_grille(plateau)
+    choix = input("Quelles tirettes voulez-vous déplacer ? Horizontal ou Vertical")
+    if choix != "Horizontal" or "Vertical":
+        print("???")
