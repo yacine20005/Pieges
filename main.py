@@ -3,6 +3,12 @@ import doctest
 import sys
 
 def creation_grille_B():
+    """
+    Retourne un tableau en 2 dimensions pour les billes
+
+    Returns:
+        list
+    """
     lst = []
     for _ in range(7):
         lst2 = []
@@ -16,6 +22,12 @@ def creation_grille_B():
     return lst
 
 def creation_grille_H():
+    """
+    Retourne un tableau en 2 dimensions pour les tirettes horizontaux
+
+    Returns:
+        list
+    """
     lst = []
     for _ in range(7):
         lst2 = []
@@ -29,6 +41,12 @@ def creation_grille_H():
     return lst
 
 def creation_grille_V():
+    """
+    Retourne un tableau en 2 dimensions pour les tirettes verticaux
+
+    Returns:
+        list
+    """
     lst = []
     for _ in range(7):
         lst2 = []
@@ -42,17 +60,38 @@ def creation_grille_V():
     return lst
 
 def deplacer_droite(grille, ligne):
+    """
+    Décale toutes les valeurs de la liste vers la droite de facon circulaire
+
+    Args:
+        grille (lst): La grille contenant la tirette qui va avoir ses valeurs décalé
+        ligne (int): La tirette qui va avoir ses valeurs décalé
+    """
     last_val = grille[ligne].pop()
     grille[ligne].insert(0, last_val)
     print(f"Déplacement à droite de la ligne {ligne}")
 
 def deplacer_gauche(grille, ligne):
+    """
+    Décale toutes les valeurs de la liste vers la gauche de facon circulaire
+
+    Args:
+        grille (lst): La grille contenant la tirette qui va avoir ses valeurs décalé
+        ligne (int): La tirette qui va avoir ses valeurs décalé
+    """
     first_val = grille[ligne][0]
     del grille[ligne][0]
     grille[ligne].insert(len(grille[ligne]) - 1, first_val)
     print(f"Déplacement à gauche de la ligne {ligne}")
 
 def deplacer_bas(grille, colonne):
+    """
+    Décale toutes les valeurs de la grille vers le bas de facon circulaire
+
+    Args:
+        grille (lst): La grille contenant la tirette qui va avoir ses valeurs décalé
+        ligne (int): La tirette qui va avoir ses valeurs décalé
+    """
     last_val = grille[len(grille) - 1][colonne]
     for x in range(len(grille) - 1, 0, -1):
         grille[x][colonne] = grille[x - 1][colonne]
@@ -60,6 +99,13 @@ def deplacer_bas(grille, colonne):
     print(f"Déplacement vers le bas de la colonne {colonne}")
 
 def deplacer_haut(grille, colonne):
+    """
+    Décale toutes les valeurs de la grille vers le haut de facon circulaire
+
+    Args:
+        grille (lst): La grille contenant la tirette qui va avoir ses valeurs décalé
+        ligne (int): La tirette qui va avoir ses valeurs décalé
+    """
     first_val = grille[0][colonne]
     for x in range(len(grille) - 1):
         grille[x][colonne] = grille[x + 1][colonne]
@@ -68,12 +114,29 @@ def deplacer_haut(grille, colonne):
 
 
 def bille_en_vie(grille_B, grille_H, grille_V):
+    """
+    Parcourt l'ensemble de la grille pour faire tomber et donc disparaître les billes du plateau ayant un trou en dessous d'eux
+
+    Args:
+        grille_B (list): Tableau en 2 dimensions représentant la couche des billes
+        grille_H (list): Tableau en 2 dimensions représentant les tirettes horizontaux
+        grille_V (list): Tableau en 2 dimensions représentant les tirettes verticaux
+    """
     for y in range(len(grille_B) - 1):
         for x in range(len(grille_B[0]) - 1):
             if grille_H[y][x] + grille_V[y][x] == 3:
                 grille_B[y][x] = False
 
 def victoire(grille_B):
+    """
+    Parcourt l'ensemble de la 
+
+    Args:
+        grille_B (_type_): _description_
+
+    Returns:
+        _type_: _description_
+    """
     for y in range(len(grille_B) - 1):
         for x in range(len(grille_B[0]) - 1):
             if grille_B[y][x] == True:
@@ -114,9 +177,11 @@ print("Bienvenue dans le jeu Pièges !")
 print("Les tirettes horizontaux sont composés de 0 et de 1")
 print("Tandis que les tirettes verticaux sont composés de 0 et de 2")
 
-while True:
-    plateau = fusion(V, H)
-    affichage_grille(plateau)
-    choix = input("Quelles tirettes voulez-vous déplacer ? Horizontal ou Vertical")
-    if choix != "Horizontal" or "Vertical":
-        print("???")
+plateau = fusion(V, H)
+affichage_grille(plateau)
+choix = input("Quelles tirettes voulez-vous déplacer ? H ou V : ")
+while choix != "H" and choix != "V":
+    choix = input("Quelles tirettes voulez-vous déplacer ? H ou V : ")
+if choix == "V":
+    int(input(""))
+
