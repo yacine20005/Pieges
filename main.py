@@ -87,8 +87,9 @@ def comparaison(PL,TV,TH):
                 PL[y][x] = True
 
 def fusion(LstVide, TV, TH):
+    LstVide = []
     for y in range(len(TV)):
-        LstVide2= []
+        LstVide2 = []
         for x in range(len(TV)):
             LstVide2.append(TV[y][x] + TH[y][x])
         LstVide.append(LstVide2)
