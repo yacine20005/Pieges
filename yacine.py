@@ -4,22 +4,22 @@ import sys
 
 def creation_grille_B():
     lst = []
-    for k in range(7):
+    for _ in range(7):
         lst2 = []
-        for x in range(7):
-            chance = random.randint(1, 2)
+        for _ in range(7):
+            chance = random.randint(1, 4)
             if chance == 1:
-                lst2.append(False)
-            else:
                 lst2.append(True)
+            else:
+                lst2.append(False)
         lst.append(lst2)
     return lst
 
 def creation_grille_H():
     lst = []
-    for k in range(7):
+    for _ in range(7):
         lst2 = []
-        for x in range(7):
+        for _ in range(7):
             chance = random.randint(1, 2)
             if chance == 1:
                 lst2.append(0)
@@ -30,9 +30,9 @@ def creation_grille_H():
 
 def creation_grille_V():
     lst = []
-    for k in range(7):
+    for _ in range(7):
         lst2 = []
-        for x in range(7):
+        for _ in range(7):
             chance = random.randint(1, 2)
             if chance == 1:
                 lst2.append(0)
@@ -46,7 +46,7 @@ def deplacer_droite(tirette):
     tirette.insert(0, last_val)
 
 def deplacer_gauche(tirette):
-    first_val = tirette[0] 
+    first_val = tirette[0]
     del tirette[0]
     tirette.insert(len(tirette) - 1, first_val)
 
