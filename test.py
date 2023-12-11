@@ -34,16 +34,11 @@ plateau = creation_grille()
 TiretteV = creation_grille()
 TiretteH = creation_grille()
 
-
-
 def comparaison(PL,TV,TH):
     for y in range(len(PL)-1):
         for x in range(len(PL)-1):
             if TV[y][x] == TH[y][x]:
                 PL[y][x] = True
-
-            
-
 
 comparaison(plateau,TiretteV,TiretteH)
  

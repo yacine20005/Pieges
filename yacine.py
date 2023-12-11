@@ -62,6 +62,21 @@ def deplacer_haut(grille, colonne):
         grille[x][colonne] = grille[x + 1][colonne]
     grille[len(grille)- 1][colonne] = first_val
 
+def bille_en_vie(grille_B, grille_H, grille_V):
+    for y in range(len(grille_B) - 1):
+        for x in range(len(grille_B[0]) - 1):
+            if grille_H[y][x] + grille_V[y][x] == 3:
+                grille_B[y][x] = False
+
+def victoire(grille_B):
+    for y in range(len(grille_B) - 1):
+        for x in range(len(grille_B[0]) - 1):
+            if grille_B[y][x] == True:
+                return False
+    return True
+
+
+
 V = creation_grille_V()
 H = creation_grille_H()
 B = creation_grille_B()
@@ -75,6 +90,14 @@ for x in H:
     print(x)
 
 print("")
+
+for x in B:
+    print(x)
+
+print("")
+print("Modif")
+print("")
+bille_en_vie(B, H, V)
 
 for x in B:
     print(x)
