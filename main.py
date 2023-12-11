@@ -86,18 +86,24 @@ def comparaison(PL,TV,TH):
             if TV[y][x] == True and TH[y][x] == True:
                 PL[y][x] = True
 
-def fusion(LstVide, TV, TH):
+def fusion(TV, TH):
     LstVide = []
     for y in range(len(TV)):
         LstVide2 = []
         for x in range(len(TV)):
             LstVide2.append(TV[y][x] + TH[y][x])
         LstVide.append(LstVide2)
+    return LstVide
 
 def compteur_de_coup(etat, nb_coup):
     if etat == True:
         nb_coup += 1
     return nb_coup
+
+def affichage_grille(grille):
+    for x in grille:
+        print(x)
+    print("")
 
 #Boucle de gameplay
 V = creation_grille_V()
@@ -105,6 +111,12 @@ H = creation_grille_H()
 B = creation_grille_B()
 
 print("Bienvenue dans le jeu Pièges !")
+print("Les tirettes horizontaux sont composés de 0 et de 1")
+print("Tandis que les tirettes verticaux sont composés de 0 et de 2")
 print("Utilisez les fonctions suivantes pour déplacer les différentes tirettes : ")
 print("deplacer_droite(grille, ligne) \n deplacer_gauche(grille, ligne) \n deplacer_bas(grille, colonne) \n deplacer_haut(grille, colonne)")
 
+affichage_grille(V)
+affichage_grille(H)
+Fusion = fusion(V, H)
+affichage_grille(Fusion)
