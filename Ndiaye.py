@@ -4,7 +4,13 @@ import sys
 from fltk import *
 
 cree_fenetre(1200,800)
-cercle
+
+
+
+#cercle(20,20,20, couleur= "blue",remplissage = "blue")
+image(0,0,'pieges.jpeg',ancrage= 'nw', largeur= 1200 , hauteur=800)
+texte(100,100,"Pièges",couleur ="Blue", taille= 60)
+
 attend_ev()
 ferme_fenetre()
 
