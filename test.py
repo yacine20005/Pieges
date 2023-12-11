@@ -75,29 +75,23 @@ def comparaison(PL,TV,TH):
                 PL[y][x] = True
 
 def fusion(LstVide, TV, TH):
+    LstVide = []
     for y in range(len(TV)):
         LstVide2= []
         for x in range(len(TV)):
             LstVide2.append(TV[y][x] + TH[y][x])
         LstVide.append(LstVide2)
 
-def comparaison(PL,TV,TH):
-    for y in range(len(PL)-1):
-        for x in range(len(PL)-1):
-            if TV[y][x] == TH[y][x]:
-                PL[y][x] = True
-
-comparaison(plateau,TiretteV,TiretteH)
-
-
-
-            
 comparaison(PlateauTrou,TiretteV,TiretteH)
 fusion(LstFusion,TiretteV,TiretteH)
  
 for x in LstFusion:
     print(x)
 
+fusion(LstFusion,TiretteV,TiretteH)
+
+for x in LstFusion:
+    print(x)
 
 
 
