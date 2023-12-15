@@ -148,7 +148,6 @@ def victoire(grille_B):
     return True
 
 def comparaison(PL,TV,TH):
-    "
     for y in range(len(PL)):
         for x in range(len(PL)):
             if TV[y][x] == True and TH[y][x] == True:
