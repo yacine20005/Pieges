@@ -116,17 +116,36 @@ def deplacer_haut(grille, colonne):
 
 
 def affichage_grille(grille):
+    """
+    Affiche un tableau en 2 dimensions ligne par ligne
+
+    Args:
+        grille (list): tableaux en 2 dimensions représentant la grille de la couche de jeu
+    """
     for x in grille:
         print(x)
     print("")
 
 def comparaison(PL,TV,TH):
+    """
+    Fonction inutilisé ?
+    """
     for y in range(len(PL)):
         for x in range(len(PL)):
             if TV[y][x] == True and TH[y][x] == True:
                 PL[y][x] = True
 
 def fusion(TV, TH):
+    """
+    Fusionne la couche des tirettes verticales et horizontales pour ne former qu'un tableau en 2 dimensions qui sera affiché au joueur
+
+    Args:
+        TV (list): tableaux en 2 dimensions représentant les tirettes verticaux
+        TH (list): tableaux en 2 dimensions représentant les tirettes horizontaux
+
+    Returns:
+        list: Tableau en 2 dimensions représentant les 2 couches de jeu
+    """
     LstVide = []
     for y in range(len(TV)):
         LstVide2 = []
