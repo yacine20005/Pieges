@@ -10,6 +10,7 @@ L_Fenetre = 1200
 H_Fenetre = 800
 taille_case = 80
 taille_plateau = 7
+taille_bouton = 25
 
 cree_fenetre(L_Fenetre, H_Fenetre)
 """Fonction de Setup"""
@@ -90,7 +91,28 @@ def affiche_plateau():
             CDBX = CDBX + taille_case
             rectangle(CDBX,CDBY,CDBX+taille_case,CDBY+taille_case, "blue")
 
-
+def affiche_bouton_tirette():
+    MFL = L_Fenetre // 2
+    MFH = H_Fenetre // 2
+    CDBX = MFL - (taille_plateau/2*taille_case) - taille_case
+    CDBY = MFH - (taille_plateau/2*taille_case) - taille_case
+    for i in range(taille_plateau):
+        CDBX = CDBX + taille_case
+        cercle(CDBX+taille_case/2,CDBY+taille_case/2,taille_bouton, "red", "red")
+    CDBX = CDBX + taille_case
+    for i in range(taille_plateau):
+        CDBY = CDBY + taille_case
+        cercle(CDBX+taille_case/2,CDBY+taille_case/2,taille_bouton, "red", "red")  
+    CDBX = MFL - (taille_plateau/2*taille_case) - taille_case
+    CDBY = MFH - (taille_plateau/2*taille_case) - taille_case
+    for i in range(taille_plateau):
+        CDBY = CDBY + taille_case
+        cercle(CDBX+taille_case/2,CDBY+taille_case/2,taille_bouton, "red", "red")
+    CDBX = MFL - (taille_plateau/2*taille_case) - taille_case
+    CDBY = MFH + (taille_plateau/2*taille_case) 
+    for i in range(taille_plateau):
+        CDBX = CDBX + taille_case
+        cercle(CDBX+taille_case/2,CDBY+taille_case/2,taille_bouton, "red", "red")
 
 """Fonction De Jeu"""
 
@@ -210,6 +232,7 @@ print("Les tirettes horizontaux sont composes de 0 et de 1")
 print("Tandis que les tirettes verticaux sont composes de 0 et de 2")
 
 affiche_plateau()
+affiche_bouton_tirette()
 
 while victoire(B) is False:
     X = 99
