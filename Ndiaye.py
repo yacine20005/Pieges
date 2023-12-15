@@ -8,6 +8,8 @@ from fltk import *
 nb_coup = 0
 L_Fenetre = 1200
 H_Fenetre = 800
+taille_case = 80
+taille_plateau = 7
 
 cree_fenetre(L_Fenetre, H_Fenetre)
 """Fonction de Setup"""
@@ -20,9 +22,9 @@ def creation_grille_B():
         list
     """
     lst = []
-    for _ in range(7):
+    for _ in range(taille_plateau):
         lst2 = []
-        for _ in range(7):
+        for _ in range(taille_plateau):
             chance = random.randint(1, 4)
             if chance == 1:
                 lst2.append(True)
@@ -39,9 +41,9 @@ def creation_grille_H():
         list
     """
     lst = []
-    for _ in range(7):
+    for _ in range(taille_plateau):
         lst2 = []
-        for _ in range(7):
+        for _ in range(taille_plateau):
             chance = random.randint(1, 2)
             if chance == 1:
                 lst2.append(0)
@@ -58,9 +60,9 @@ def creation_grille_V():
         list
     """
     lst = []
-    for _ in range(7):
+    for _ in range(taille_plateau):
         lst2 = []
-        for _ in range(7):
+        for _ in range(taille_plateau):
             chance = random.randint(1, 2)
             if chance == 1:
                 lst2.append(0)
@@ -75,6 +77,20 @@ def affichage_grille(grille):
     for x in grille:
         print(x)
     print("")
+
+def affiche_plateau():
+    MFL = L_Fenetre // 2
+    MFH = H_Fenetre // 2
+    CDBX = MFL - (taille_plateau/2*taille_case) - taille_case
+    CDBY = MFH - (taille_plateau/2*taille_case) -taille_case
+    for y in range(taille_plateau):
+        CDBY = CDBY + taille_case
+        CDBX = MFL - (taille_plateau/2*taille_case) - taille_case
+        for x in range(taille_plateau):
+            CDBX = CDBX + taille_case
+            rectangle(CDBX,CDBY,CDBX+taille_case,CDBY+taille_case, "blue")
+
+
 
 """Fonction De Jeu"""
 
@@ -193,6 +209,7 @@ print("Bienvenue dans le jeu Pieges !")
 print("Les tirettes horizontaux sont composes de 0 et de 1")
 print("Tandis que les tirettes verticaux sont composes de 0 et de 2")
 
+affiche_plateau()
 
 while victoire(B) is False:
     X = 99
