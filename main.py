@@ -17,7 +17,7 @@ def creation_grille_B():
     for _ in range(7):
         lst2 = []
         for _ in range(7):
-            chance = random.randint(1, 4)
+            chance = random.randint(1, 8)
             if chance == 1:
                 lst2.append(True)
             else:
@@ -73,6 +73,7 @@ def deplacer_droite(grille, ligne):
     """
     last_val = grille[ligne].pop()
     grille[ligne].insert(0, last_val)
+    print("")
     print(f"Déplacement à droite de la ligne {ligne}")
 
 def deplacer_gauche(grille, ligne):
@@ -86,6 +87,7 @@ def deplacer_gauche(grille, ligne):
     first_val = grille[ligne][0]
     del grille[ligne][0]
     grille[ligne].insert(len(grille[ligne]) - 1, first_val)
+    print("")
     print(f"Déplacement à gauche de la ligne {ligne}")
 
 def deplacer_bas(grille, colonne):
@@ -100,6 +102,7 @@ def deplacer_bas(grille, colonne):
     for x in range(len(grille) - 1, 0, -1):
         grille[x][colonne] = grille[x - 1][colonne]
     grille[0][colonne] = last_val
+    print("")
     print(f"Déplacement vers le bas de la colonne {colonne}")
 
 def deplacer_haut(grille, colonne):
@@ -114,6 +117,7 @@ def deplacer_haut(grille, colonne):
     for x in range(len(grille) - 1):
         grille[x][colonne] = grille[x + 1][colonne]
     grille[len(grille)- 1][colonne] = first_val
+    print("")
     print(f"Déplacement vers le haut de la colonne {colonne}")
 
 
@@ -128,7 +132,7 @@ def bille_en_vie(grille_B, grille_H, grille_V):
     """
     for y in range(len(grille_B)):
         for x in range(len(grille_B[0])):
-            if grille_H[y][x] + grille_V[y][x] == 3:
+            if grille_H[y][x] + grille_V[y][x] == 0:
                 grille_B[y][x] = False
 
 def victoire(grille_B):
@@ -148,7 +152,6 @@ def victoire(grille_B):
     return True
 
 def comparaison(PL,TV,TH):
-    "
     for y in range(len(PL)):
         for x in range(len(PL)):
             if TV[y][x] == True and TH[y][x] == True:
@@ -163,9 +166,8 @@ def fusion(TV, TH):
         LstVide.append(LstVide2)
     return LstVide
 
-def compteur_de_coup(etat, nb_coup):
-    if etat == True:
-        nb_coup += 1
+def compteur_de_coup(nb_coup):
+    nb_coup += 1
     return nb_coup
 
 def affichage_grille(grille):
@@ -178,6 +180,7 @@ def affichage_grille(grille):
 V = creation_grille_V()
 H = creation_grille_H()
 B = creation_grille_B()
+nb_coup = 0
 victoire(B)
 
 print("Bienvenue dans le jeu Pieges !")
@@ -186,43 +189,48 @@ print("Tandis que les tirettes verticaux sont composes de 0 et de 2")
 
 
 while victoire(B) is False:
-    X = 99
-    Mouv = ""
-    choix = ""
+
+    tirette = None
+    mouv = ""
+    direction = ""
     plateau = fusion(V, H)
+    print("")
     affichage_grille(plateau)
     affichage_grille(B)
-    while choix != "H" and choix != "V" and choix != "STOP":
-        choix = input("Quelles tirettes voulez-vous deplacer ? H ou V : ")
-    if choix == "V":
-        while X not in range(len(B)) :
-            X = int(input("Quelle Tirette voulez vous deplacez ?"))
-        while Mouv != "Haut" and Mouv != "Bas":
-            Mouv = input("Comment voulez vous la deplacer, Haut ou Bas ")
-        if Mouv == "Bas":
-            deplacer_bas(plateau, X)
-        elif Mouv == "Haut":
-            deplacer_haut(plateau, X)
+    while direction not in ("H", "V", "STOP"):
+        direction = input("Voulez-vous deplacer les tirettes horizontaux ou verticaux ? (H ou V ou STOP) : ")
+
+    if direction == "V":
+        while tirette not in range(len(B)) :
+            tirette = (input("Quelle tirette voulez-vous deplacer ? (0 - 6) : "))
+            if tirette.isdigit():
+                tirette = int(tirette)
+        while mouv not in ("H", "B"):
+            mouv = input("Dans quelle direction ? (H ou B) : ")
+        if mouv == "B":
+            deplacer_bas(V, tirette)
+        elif mouv == "H":
+            deplacer_haut(V, tirette)
         bille_en_vie(B, H, V)
-        compteur_de_coup(True, nb_coup)
-        print(nb_coup)
-        print("Vous avez deplacer la tirette verticale numéro", X ,"vers le", Mouv)
-        affichage_grille(plateau)
-        affichage_grille(B)
-    elif choix == "H":
-        while X not in range(len(B)) :
-            X = int(input("Quelle Tirette voulez vous deplacez ?"))
-        while Mouv != "Gauche" and Mouv != "Droite":
-            Mouv = input("Comment voulez vous la deplacer, Gauche ou Droite ")
-        if Mouv == "Gauche":
-            deplacer_droite(plateau, X)
-        elif Mouv == "Droite":
-            deplacer_gauche(plateau, X)
+        nb_coup += 1
+        print("")
+        print("Vous avez deplacer des tirettes", nb_coup, "fois")
+
+    elif direction == "H":
+        while tirette not in range(len((B)[0])):
+            tirette = (input("Quelle tirette voulez-vous deplacer ? (0 - 6) : "))
+            if tirette.isdigit():
+                tirette = int(tirette)
+        while mouv not in ("G", "D"):
+            mouv = input("Dans quelle direction ? (D ou G) : ")
+        if mouv == "G":
+            deplacer_gauche(H, tirette)
+        elif mouv == "D":
+            deplacer_droite(H, tirette)
         bille_en_vie(B, H, V)
-        compteur_de_coup(True, nb_coup)
-        print(nb_coup)
-        print("Vous avez deplacer la tirette horizontale numéro", X ,"vers le", Mouv)
-        affichage_grille(plateau)
-        affichage_grille(B)
-    elif choix == "STOP":
+        nb_coup += 1
+        print("")
+        print("Vous avez deplacer des tirettes", nb_coup, "fois")
+
+    elif direction == "STOP":
         break
