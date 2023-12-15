@@ -14,13 +14,13 @@ def bille_en_vie(grille_B, grille_H, grille_V):
 
 def victoire(grille_B):
     """
-    Parcourt l'ensemble de la 
+    Parcourt l'ensemble de la grille bille pour vérifier la victoire du joueur ou non
 
     Args:
-        grille_B (_type_): _description_
+        grille_B (list): Tableau en 2 dimensions représentant la couche des billes
 
     Returns:
-        _type_: _description_
+        bool: True si il n'y plus de billes et False si il en reste qu'un
     """
     for y in range(len(grille_B) - 1):
         for x in range(len(grille_B[0]) - 1):
