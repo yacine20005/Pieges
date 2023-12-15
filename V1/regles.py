@@ -26,4 +26,5 @@ def victoire(grille_B):
         for x in range(len(grille_B[0]) - 1):
             if grille_B[y][x] == True:
                 return False
+    print("Victoire !!!")
     return True
