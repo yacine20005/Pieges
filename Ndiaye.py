@@ -13,6 +13,9 @@ taille_plateau = 7
 taille_bouton = 25
 
 cree_fenetre(L_Fenetre, H_Fenetre)
+image(0,0, "pieges.jpeg",
+        largeur = L_Fenetre, hauteur = H_Fenetre, ancrage = "nw")
+
 """Fonction de Setup"""
 
 def creation_grille_B():
@@ -74,6 +77,21 @@ def creation_grille_V():
 
 """ Fonction d'affichage"""
 
+def etat_tirette(lst, x, y):
+    x,y = x-1,y-1
+    n = lst[y][x]
+    if n == 0:
+        return "white"
+    elif n == 1:
+        return "blue"
+    elif n == 2:
+        return "yellow"
+    elif n == 3:
+        return "green"
+    
+
+
+
 def affichage_grille(grille):
     for x in grille:
         print(x)
@@ -89,7 +107,23 @@ def affiche_plateau():
         CDBX = MFL - (taille_plateau/2*taille_case) - taille_case
         for x in range(taille_plateau):
             CDBX = CDBX + taille_case
-            rectangle(CDBX,CDBY,CDBX+taille_case,CDBY+taille_case, "blue")
+            rectangle(CDBX,CDBY,CDBX+taille_case,CDBY+taille_case, "white")
+
+def affiche_tirette():
+    Y = 0
+    MFL = L_Fenetre // 2
+    MFH = H_Fenetre // 2
+    CDBX = MFL - (taille_plateau/2*taille_case) - taille_case
+    CDBY = MFH - (taille_plateau/2*taille_case) -taille_case
+    for y in range(taille_plateau):
+        X = 0
+        Y = Y+1
+        CDBY = CDBY + taille_case
+        CDBX = MFL - (taille_plateau/2*taille_case) - taille_case
+        for x in range(taille_plateau):
+            X = X + 1
+            CDBX = CDBX + taille_case
+            rectangle(CDBX,CDBY,CDBX+taille_case,CDBY+taille_case, remplissage = etat_tirette(plateau,X,Y))
 
 def affiche_bouton_tirette():
     MFL = L_Fenetre // 2
@@ -113,6 +147,7 @@ def affiche_bouton_tirette():
     for i in range(taille_plateau):
         CDBX = CDBX + taille_case
         cercle(CDBX+taille_case/2,CDBY+taille_case/2,taille_bouton, "red", "red")
+
 
 """Fonction De Jeu"""
 
@@ -231,8 +266,10 @@ print("Bienvenue dans le jeu Pieges !")
 print("Les tirettes horizontaux sont composes de 0 et de 1")
 print("Tandis que les tirettes verticaux sont composes de 0 et de 2")
 
+plateau = fusion(V, H)
 affiche_plateau()
 affiche_bouton_tirette()
+affiche_tirette()
 
 while victoire(B) is False:
     X = 99
