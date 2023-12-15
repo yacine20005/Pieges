@@ -1,10 +1,16 @@
 import random
 import doctest
 import sys
+from fltk import *
+
 
 """ Variable global """
 nb_coup = 0
+L_Fenetre = 1200
+H_Fenetre = 800
 
+cree_fenetre(L_Fenetre, H_Fenetre)
+"""Fonction de Setup"""
 
 def creation_grille_B():
     """
@@ -62,6 +68,15 @@ def creation_grille_V():
                 lst2.append(2)
         lst.append(lst2)
     return lst
+
+""" Fonction d'affichage"""
+
+def affichage_grille(grille):
+    for x in grille:
+        print(x)
+    print("")
+
+"""Fonction De Jeu"""
 
 def deplacer_droite(grille, ligne):
     """
@@ -167,11 +182,6 @@ def compteur_de_coup(etat, nb_coup):
         nb_coup += 1
     return nb_coup
 
-def affichage_grille(grille):
-    for x in grille:
-        print(x)
-    print("")
-
 #Boucle de gameplay
 
 V = creation_grille_V()
@@ -192,6 +202,7 @@ while victoire(B) is False:
     affichage_grille(plateau)
     affichage_grille(B)
     while choix != "H" and choix != "V" and choix != "STOP":
+    #while choix is not in ("H","V","STOP"):
         choix = input("Quelles tirettes voulez-vous deplacer ? H ou V : ")
     if choix == "V":
         while X not in range(len(B)) :
@@ -225,7 +236,7 @@ while victoire(B) is False:
         affichage_grille(B)
     elif choix == "STOP":
         break
-
+    
 
 
 
