@@ -5,7 +5,7 @@ H_Fenetre = 800
 taille_case = 80
 taille_plateau = 7
 taille_bouton = 25
-taille_bille = 20
+taille_bille = 15
 
 """ Fonction d'affichage"""
 
@@ -31,7 +31,7 @@ def affiche_plateau():
         CDBX = MFL - (taille_plateau/2*taille_case) - taille_case
         for x in range(taille_plateau):
             CDBX = CDBX + taille_case
-            rectangle(CDBX,CDBY,CDBX+taille_case,CDBY+taille_case, "white")
+            rectangle(CDBX,CDBY,CDBX+taille_case,CDBY+taille_case, "black", "black")
 
 def affiche_tirette(plateau):
     Y = 0
@@ -47,7 +47,8 @@ def affiche_tirette(plateau):
         for x in range(taille_plateau):
             X = X + 1
             CDBX = CDBX + taille_case
-            rectangle(CDBX,CDBY,CDBX+taille_case,CDBY+taille_case, remplissage = etat_tirette(plateau,X,Y), tag = "tirette")
+            #rectangle(CDBX,CDBY,CDBX+taille_case,CDBY+taille_case, remplissage = etat_tirette(plateau,X,Y), tag = "tirette")
+            cercle(CDBX+taille_case/2,CDBY+taille_case/2, taille_bouton, remplissage = etat_tirette(plateau,X,Y), tag = "tirette")
 
 def affiche_bouton_tirette():
     MFL = L_Fenetre // 2
