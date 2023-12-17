@@ -1,4 +1,20 @@
 import random
+""" Variables global"""
+
+L_Fenetre = 1200
+H_Fenetre = 800
+taille_case = 80
+taille_plateau = 7
+taille_bouton = 25
+taille_bille = 20
+MFL = L_Fenetre / 2
+MFH = H_Fenetre / 2
+CoMinX = MFL - (taille_plateau /2 * taille_case) - taille_case
+CoMaxX = (CoMinX + taille_case) + (taille_case * taille_plateau)
+CoMinY = MFH - (taille_plateau/2*taille_case) - taille_case
+CoMaxY = (CoMinY + taille_case) + (taille_case * taille_plateau)
+HitBoxBouton = 3
+
 
 def creation_grille_B():
     """
@@ -153,3 +169,31 @@ def fusion(TV, TH):
             LstVide2.append(TV[y][x] + TH[y][x])
         LstVide.append(LstVide2)
     return LstVide
+
+def poser_bille(PB,x,y):
+    x,y = x-1,y-1
+    PB[y][x] = True
+
+def gerer_evenement(B,V,H,x,y):
+    
+    if x > CoMinX + taille_case  and x < CoMaxX and y > CoMinY + taille_case and y < CoMaxY:
+        X = int((x - CoMinX) // taille_case)
+        Y = int((y - CoMinY) // taille_case)
+        print(X,Y)
+        poser_bille(B,X,Y)
+    elif x > CoMinX and x < CoMinX + taille_case and y > CoMinY and y < CoMaxY:
+        Y = int((y - CoMinY) // taille_case) - 1
+        if Y  in range(len((B)[0])):
+            deplacer_droite(V, Y)
+    elif x > CoMaxX and x < CoMaxX + taille_bouton * HitBoxBouton  and y > CoMinY and y < CoMaxY:
+        Y = int((y - CoMinY) // taille_case) -1
+        if Y  in range(len((B)[0])):
+            deplacer_gauche(V, Y)
+    elif x > CoMinX + taille_case and x < CoMaxX  and y < CoMinY + taille_case and y > CoMinY - taille_bouton * HitBoxBouton :
+        X = int((x - CoMinX) // taille_case) - 1
+        if X  in range(len((B)[0])):
+            deplacer_bas(V, X)
+    elif x > CoMinX + taille_case and x < CoMaxX and y > CoMaxY and y < CoMaxY + taille_bouton * HitBoxBouton :
+        X = int((x - CoMinX) // taille_case) - 1
+        if X in range(len((B)[0])):
+            deplacer_haut(V, X)

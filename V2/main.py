@@ -26,11 +26,32 @@ print("Tandis que les tirettes verticaux sont composes de 0 et de 2")
 plateau = fusion(V, H)
 cree_fenetre(L_Fenetre, H_Fenetre)
 affiche_plateau()
-affiche_tirette(plateau)
 affiche_bouton_tirette()
-ev = attend_ev()
-print(ev)
-print(abscisse(ev), ordonnee(ev))
+affiche_tirette(plateau)
+
+
+#Nouvelle boucle de gameplay 
+
+while victoire(B) is False:
+
+    bille_en_vie(B, H, V)
+    affiche_bille(B)
+    plateau = fusion(V, H)
+    affiche_tirette(plateau)
+    affiche_bille(B)
+    ev = attend_ev()
+    if ev is not None:
+        tev = type_ev(ev)
+        if tev == "ClicGauche":
+            x,y = abscisse(ev), ordonnee(ev)
+            gerer_evenement(B,V,H,x,y)
+            bille_en_vie(B, H, V)
+            nb_coup += 1
+        if tev =="Quitte":
+            ferme_fenetre()
+            break
+    efface("bille")
+    efface("tirette")  
 
 #Ancienne boucle de gameplay
 """
