@@ -2,14 +2,7 @@ from grilles import *
 from regles import *
 from affichage import *
 from fltk import *
-
-#Variable global
-
-L_Fenetre = 1200
-H_Fenetre = 800
-taille_case = 80
-taille_plateau = 7
-taille_bouton = 25
+from variable import *
 
 #Boucle de gameplay
 
@@ -25,6 +18,7 @@ print("Tandis que les tirettes verticaux sont composes de 0 et de 2")
 
 plateau = fusion(V, H)
 cree_fenetre(L_Fenetre, H_Fenetre)
+rectangle(0,0,largeur_fenetre() ,hauteur_fenetre() ,"black", "black")
 affiche_plateau()
 affiche_bouton_tirette()
 affiche_tirette(plateau)

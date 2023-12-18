@@ -1,11 +1,6 @@
 from fltk import *
+from variable import *
 
-L_Fenetre = 1200
-H_Fenetre = 800
-taille_case = 80
-taille_plateau = 7
-taille_bouton = 25
-taille_bille = 15
 
 """ Fonction d'affichage"""
 
@@ -13,13 +8,13 @@ def etat_tirette(lst, x, y):
     x,y = x-1,y-1
     n = lst[y][x]
     if n == 0:
-        return "white"
+        return "black"
     elif n == 1:
         return "blue"
     elif n == 2:
         return "yellow"
     elif n == 3:
-        return "green"
+        return "blue"
 
 def affiche_plateau():
     MFL = L_Fenetre // 2
@@ -31,7 +26,7 @@ def affiche_plateau():
         CDBX = MFL - (taille_plateau/2*taille_case) - taille_case
         for x in range(taille_plateau):
             CDBX = CDBX + taille_case
-            rectangle(CDBX,CDBY,CDBX+taille_case,CDBY+taille_case, "black", "black")
+            rectangle(CDBX,CDBY,CDBX+taille_case,CDBY+taille_case, "black", "white")
 
 def affiche_tirette(plateau):
     Y = 0
@@ -57,21 +52,21 @@ def affiche_bouton_tirette():
     CDBY = MFH - (taille_plateau/2*taille_case) - taille_case
     for i in range(taille_plateau):
         CDBX = CDBX + taille_case
-        cercle(CDBX+taille_case/2,CDBY+taille_case/2,taille_bouton, "red", "red")
+        cercle(CDBX+taille_case/2,CDBY+taille_case/2,taille_bouton, "white", "yellow")
     CDBX = CDBX + taille_case
     for i in range(taille_plateau):
         CDBY = CDBY + taille_case
-        cercle(CDBX+taille_case/2,CDBY+taille_case/2,taille_bouton, "red", "red")  
+        cercle(CDBX+taille_case/2,CDBY+taille_case/2,taille_bouton, "white", "blue")  
     CDBX = MFL - (taille_plateau/2*taille_case) - taille_case
     CDBY = MFH - (taille_plateau/2*taille_case) - taille_case
     for i in range(taille_plateau):
         CDBY = CDBY + taille_case
-        cercle(CDBX+taille_case/2,CDBY+taille_case/2,taille_bouton, "red", "red")
+        cercle(CDBX+taille_case/2,CDBY+taille_case/2,taille_bouton, "white", "blue")
     CDBX = MFL - (taille_plateau/2*taille_case) - taille_case
     CDBY = MFH + (taille_plateau/2*taille_case) 
     for i in range(taille_plateau):
         CDBX = CDBX + taille_case
-        cercle(CDBX+taille_case/2,CDBY+taille_case/2,taille_bouton, "red", "red")
+        cercle(CDBX+taille_case/2,CDBY+taille_case/2,taille_bouton, "white", "yellow")
 
 def affiche_bille(PB):
     MFL = L_Fenetre // 2

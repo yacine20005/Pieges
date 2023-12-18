@@ -1,20 +1,5 @@
 import random
-""" Variables global"""
-
-L_Fenetre = 1200
-H_Fenetre = 800
-taille_case = 80
-taille_plateau = 7
-taille_bouton = 25
-taille_bille = 20
-MFL = L_Fenetre / 2
-MFH = H_Fenetre / 2
-CoMinX = MFL - (taille_plateau /2 * taille_case) - taille_case
-CoMaxX = (CoMinX + taille_case) + (taille_case * taille_plateau)
-CoMinY = MFH - (taille_plateau/2*taille_case) - taille_case
-CoMaxY = (CoMinY + taille_case) + (taille_case * taille_plateau)
-HitBoxBouton = 3
-
+from variable import *
 
 def creation_grille_B():
     """
@@ -184,11 +169,11 @@ def gerer_evenement(B,V,H,x,y):
     elif x > CoMinX and x < CoMinX + taille_case and y > CoMinY and y < CoMaxY:
         Y = int((y - CoMinY) // taille_case) - 1
         if Y  in range(len((B)[0])):
-            deplacer_droite(V, Y)
+            deplacer_droite(H, Y)
     elif x > CoMaxX and x < CoMaxX + taille_bouton * HitBoxBouton  and y > CoMinY and y < CoMaxY:
         Y = int((y - CoMinY) // taille_case) -1
         if Y  in range(len((B)[0])):
-            deplacer_gauche(V, Y)
+            deplacer_gauche(H, Y)
     elif x > CoMinX + taille_case and x < CoMaxX  and y < CoMinY + taille_case and y > CoMinY - taille_bouton * HitBoxBouton :
         X = int((x - CoMinX) // taille_case) - 1
         if X  in range(len((B)[0])):
