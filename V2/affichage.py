@@ -17,8 +17,8 @@ def etat_tirette(lst, x, y):
         return "blue"
 
 def affiche_plateau():
-    MFL = L_Fenetre // 2
-    MFH = H_Fenetre // 2
+    MFL = largeur_fenetre() // 2
+    MFH = hauteur_fenetre() // 2
     CDBX = MFL - (taille_plateau/2*taille_case) - taille_case
     CDBY = MFH - (taille_plateau/2*taille_case) -taille_case
     for y in range(taille_plateau):
@@ -29,8 +29,8 @@ def affiche_plateau():
             rectangle(CDBX,CDBY,CDBX+taille_case,CDBY+taille_case, "black", "white")
 
 def affiche_tirette(plateau):
-    MFL = L_Fenetre // 2
-    MFH = H_Fenetre // 2
+    MFL = largeur_fenetre() // 2
+    MFH = hauteur_fenetre() // 2
     CDBX = MFL - (taille_plateau/2*taille_case) - taille_case
     CDBY = MFH - (taille_plateau/2*taille_case) -taille_case
     for y in range(1, taille_plateau + 1):
@@ -41,8 +41,8 @@ def affiche_tirette(plateau):
             cercle(CDBX+taille_case/2,CDBY+taille_case/2, taille_bouton, remplissage = etat_tirette(plateau,x,y), tag = "tirette")
 
 def affiche_bouton_tirette():
-    MFL = L_Fenetre // 2
-    MFH = H_Fenetre // 2
+    MFL = largeur_fenetre() // 2
+    MFH = hauteur_fenetre() // 2
     CDBX = MFL - (taille_plateau/2*taille_case) - taille_case
     CDBY = MFH - (taille_plateau/2*taille_case) - taille_case
     for i in range(taille_plateau):
@@ -64,8 +64,8 @@ def affiche_bouton_tirette():
         cercle(CDBX+taille_case/2,CDBY+taille_case/2,taille_bouton, "white", "yellow")
 
 def affiche_bille(PB):
-    MFL = L_Fenetre // 2
-    MFH = H_Fenetre // 2
+    MFL = largeur_fenetre() // 2
+    MFH = hauteur_fenetre() // 2
     CDBX = MFL - (taille_plateau/2*taille_case) - taille_case
     CDBY = MFH - (taille_plateau/2*taille_case) - taille_case
     for y in range(len(PB)):

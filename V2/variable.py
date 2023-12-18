@@ -1,13 +1,1 @@
-L_Fenetre = 1200
-H_Fenetre = 800
-taille_case = 80
-taille_plateau = 7
-taille_bouton = 25
-taille_bille = 20
-MFL = L_Fenetre / 2
-MFH = H_Fenetre / 2
-CoMinX = MFL - (taille_plateau /2 * taille_case) - taille_case
-CoMaxX = (CoMinX + taille_case) + (taille_case * taille_plateau)
-CoMinY = MFH - (taille_plateau/2*taille_case) - taille_case
-CoMaxY = (CoMinY + taille_case) + (taille_case * taille_plateau)
-HitBoxBouton = 3
+nb_coup = 0

@@ -1,5 +1,6 @@
 import random
 from variable import *
+from fltk import *
 
 def creation_grille_B():
     """
@@ -159,8 +160,7 @@ def poser_bille(PB,x,y):
     x,y = x-1,y-1
     PB[y][x] = True
 
-def gerer_evenement(B,V,H,x,y):
-    
+def gerer_evenement(B,V,H,x,y, CoMinX, CoMinY, CoMaxX, CoMaxY):
     if x > CoMinX + taille_case  and x < CoMaxX and y > CoMinY + taille_case and y < CoMaxY:
         X = int((x - CoMinX) // taille_case)
         Y = int((y - CoMinY) // taille_case)
@@ -168,17 +168,17 @@ def gerer_evenement(B,V,H,x,y):
         poser_bille(B,X,Y)
     elif x > CoMinX and x < CoMinX + taille_case and y > CoMinY and y < CoMaxY:
         Y = int((y - CoMinY) // taille_case) - 1
-        if Y  in range(len((B)[0])):
+        if Y in range(len((B)[0])):
             deplacer_droite(H, Y)
     elif x > CoMaxX and x < CoMaxX + taille_bouton * HitBoxBouton  and y > CoMinY and y < CoMaxY:
         Y = int((y - CoMinY) // taille_case) -1
-        if Y  in range(len((B)[0])):
+        if Y in range(len((B)[0])):
             deplacer_gauche(H, Y)
     elif x > CoMinX + taille_case and x < CoMaxX  and y < CoMinY + taille_case and y > CoMinY - taille_bouton * HitBoxBouton :
         X = int((x - CoMinX) // taille_case) - 1
-        if X  in range(len((B)[0])):
+        if X in range(len(B)):
             deplacer_bas(V, X)
     elif x > CoMinX + taille_case and x < CoMaxX and y > CoMaxY and y < CoMaxY + taille_bouton * HitBoxBouton :
         X = int((x - CoMinX) // taille_case) - 1
-        if X in range(len((B)[0])):
+        if X in range(len(B)):
             deplacer_haut(V, X)

@@ -9,19 +9,27 @@ from variable import *
 V = creation_grille_V()
 H = creation_grille_H()
 B = creation_grille_B()
-nb_coup = 0
 victoire(B)
 
 print("Bienvenue dans le jeu Pieges !")
 print("Les tirettes horizontaux sont composes de 0 et de 1")
 print("Tandis que les tirettes verticaux sont composes de 0 et de 2")
 
-plateau = fusion(V, H)
-cree_fenetre(L_Fenetre, H_Fenetre)
+cree_fenetre(1200, 800, redimension = True)
 rectangle(0,0,largeur_fenetre() ,hauteur_fenetre() ,"black", "black")
+plateau = fusion(V, H)
+taille_case = 80
+taille_plateau = 7
+taille_bouton = 25
+taille_bille = 20
+HitBoxBouton = 3
 affiche_plateau()
 affiche_bouton_tirette()
 affiche_tirette(plateau)
+CoMinX = largeur_fenetre() / 2 - (taille_plateau /2 * taille_case) - taille_case
+CoMaxX = (CoMinX + taille_case) + (taille_case * taille_plateau)
+CoMinY = hauteur_fenetre() / 2 - (taille_plateau/2*taille_case) - taille_case
+CoMaxY = (CoMinY + taille_case) + (taille_case * taille_plateau)
 
 
 #Nouvelle boucle de gameplay 
@@ -38,11 +46,20 @@ while victoire(B) is False:
         tev = type_ev(ev)
         if tev == "ClicGauche":
             x,y = abscisse(ev), ordonnee(ev)
-            gerer_evenement(B,V,H,x,y)
+            gerer_evenement(B,V,H,x,y, CoMinX, CoMinY, CoMaxX, CoMaxY)
             bille_en_vie(B, H, V)
             nb_coup += 1
+        if tev == "Redimension":
+            efface_tout()
+            rectangle(0,0,largeur_fenetre() ,hauteur_fenetre() ,"black", "black")
+            affiche_plateau()
+            affiche_bouton_tirette()
+            affiche_tirette(plateau)
+            CoMinX = largeur_fenetre() / 2 - (taille_plateau /2 * taille_case) - taille_case
+            CoMaxX = (CoMinX + taille_case) + (taille_case * taille_plateau)
+            CoMinY = hauteur_fenetre() / 2 - (taille_plateau/2*taille_case) - taille_case
+            CoMaxY = (CoMinY + taille_case) + (taille_case * taille_plateau)
         if tev =="Quitte":
-            ferme_fenetre()
             break
     efface("bille")
     efface("tirette")  
