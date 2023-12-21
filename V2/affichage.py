@@ -3,7 +3,7 @@ from variable import *
 
 
 """ Fonction d'affichage"""
-
+    
 def etat_tirette(lst, x, y):
     x,y = x-1,y-1
     n = lst[y][x]

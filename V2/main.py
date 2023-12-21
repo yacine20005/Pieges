@@ -18,6 +18,7 @@ print("Tandis que les tirettes verticaux sont composes de 0 et de 2")
 cree_fenetre(1200, 800, redimension = True)
 rectangle(0,0,largeur_fenetre() ,hauteur_fenetre() ,"black", "black")
 plateau = fusion(V, H)
+
 taille_case = 80
 taille_plateau = 7
 taille_bouton = 25
@@ -48,7 +49,6 @@ while victoire(B) is False:
             x,y = abscisse(ev), ordonnee(ev)
             gerer_evenement(B,V,H,x,y, CoMinX, CoMinY, CoMaxX, CoMaxY)
             bille_en_vie(B, H, V)
-            nb_coup += 1
         if tev == "Redimension":
             efface_tout()
             rectangle(0,0,largeur_fenetre() ,hauteur_fenetre() ,"black", "black")
