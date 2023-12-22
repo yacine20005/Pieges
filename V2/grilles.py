@@ -92,7 +92,7 @@ def deplacer_gauche(grille, ligne):
     print(grille[ligne])
     first_val = grille[ligne].pop(0)
     print(grille[ligne])
-    grille[ligne].insert(len(grille[ligne]) - 1, first_val)
+    grille[ligne].insert(len(grille[ligne]), first_val)
     print(grille[ligne])
 
 def deplacer_bas(grille, colonne):
