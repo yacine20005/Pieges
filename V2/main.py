@@ -2,7 +2,6 @@ from grilles import *
 from regles import *
 from affichage import *
 from fltk import *
-from variable import *
 
 #Boucle de gameplay
 
@@ -19,14 +18,19 @@ cree_fenetre(1200, 800, redimension = True)
 rectangle(0,0,largeur_fenetre() ,hauteur_fenetre() ,"black", "black")
 plateau = fusion(V, H)
 
-taille_case = 80
+taille_case = min(largeur_fenetre() ,hauteur_fenetre()) / 10
 taille_plateau = 7
 taille_bouton = 25
 taille_bille = 20
-HitBoxBouton = 3
-affiche_plateau()
-affiche_bouton_tirette()
-affiche_tirette(plateau)
+hitbox_b = 3
+
+coeff_bouton = 0.25
+coeff_bille = 0.2
+coeff_Hitbox_B = 0.3
+
+affiche_plateau(taille_plateau, taille_case)
+affiche_bouton_tirette(taille_plateau, taille_case, taille_bouton)
+affiche_tirette(plateau, taille_plateau, taille_case, taille_bouton)
 CoMinX = largeur_fenetre() / 2 - (taille_plateau /2 * taille_case) - taille_case
 CoMaxX = (CoMinX + taille_case) + (taille_case * taille_plateau)
 CoMinY = hauteur_fenetre() / 2 - (taille_plateau/2*taille_case) - taille_case
@@ -38,23 +42,27 @@ CoMaxY = (CoMinY + taille_case) + (taille_case * taille_plateau)
 while victoire(B) is False:
 
     bille_en_vie(B, H, V)
-    affiche_bille(B)
+    affiche_bille(B, taille_plateau, taille_case, taille_bille)
     plateau = fusion(V, H)
-    affiche_tirette(plateau)
-    affiche_bille(B)
+    affiche_tirette(plateau, taille_plateau, taille_case, taille_bouton)
+    affiche_bille(B, taille_plateau, taille_case, taille_bille)
     ev = attend_ev()
     if ev is not None:
         tev = type_ev(ev)
         if tev == "ClicGauche":
             x,y = abscisse(ev), ordonnee(ev)
-            gerer_evenement(B,V,H,x,y, CoMinX, CoMinY, CoMaxX, CoMaxY)
+            gerer_evenement(B,V,H,x,y, CoMinX, CoMinY, CoMaxX, CoMaxY, taille_case, taille_bouton, hitbox_b)
             bille_en_vie(B, H, V)
         if tev == "Redimension":
             efface_tout()
             rectangle(0,0,largeur_fenetre() ,hauteur_fenetre() ,"black", "black")
-            affiche_plateau()
-            affiche_bouton_tirette()
-            affiche_tirette(plateau)
+            taille_case = min(largeur_fenetre() ,hauteur_fenetre()) / 10
+            taille_bouton = coeff_bouton * taille_case
+            taille_bille = coeff_bille * taille_case
+            Hitbox_B = coeff_Hitbox_B * taille_case
+            affiche_plateau(taille_plateau, taille_case)
+            affiche_bouton_tirette(taille_plateau, taille_case, taille_bouton)
+            affiche_tirette(plateau, taille_plateau, taille_case, taille_bouton)
             CoMinX = largeur_fenetre() / 2 - (taille_plateau /2 * taille_case) - taille_case
             CoMaxX = (CoMinX + taille_case) + (taille_case * taille_plateau)
             CoMinY = hauteur_fenetre() / 2 - (taille_plateau/2*taille_case) - taille_case
