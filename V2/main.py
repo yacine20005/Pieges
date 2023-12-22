@@ -52,6 +52,7 @@ while victoire(B) is False:
         if tev == "ClicGauche":
             x,y = abscisse(ev), ordonnee(ev)
             gerer_evenement(B,V,H,x,y, CoMinX, CoMinY, CoMaxX, CoMaxY, taille_case, taille_bouton, hitbox_b)
+            affichage_grille(H)
             bille_en_vie(B, H, V)
         if tev == "Redimension":
             efface_tout()

@@ -58,6 +58,17 @@ def creation_grille_V():
         lst.append(lst2)
     return lst
 
+def affichage_grille(grille):
+    """
+    Affiche un tableau en 2 dimensions ligne par ligne
+
+    Args:
+        grille (list): tableaux en 2 dimensions représentant la grille de la couche de jeu
+    """
+    for x in grille:
+        print(x)
+    print("")
+
 def deplacer_droite(grille, ligne):
     """
     Décale toutes les valeurs de la liste vers la droite de facon circulaire
@@ -68,8 +79,6 @@ def deplacer_droite(grille, ligne):
     """
     last_val = grille[ligne].pop()
     grille[ligne].insert(0, last_val)
-    print("")
-    print(f"Déplacement à droite de la ligne {ligne}")
 
 def deplacer_gauche(grille, ligne):
     """
@@ -79,11 +88,12 @@ def deplacer_gauche(grille, ligne):
         grille (lst): La grille contenant la tirette qui va avoir ses valeurs décalé
         ligne (int): La tirette qui va avoir ses valeurs décalé
     """
-    first_val = grille[ligne][0]
-    del grille[ligne][0]
-    grille[ligne].insert(len(grille[ligne]) - 1, first_val)
     print("")
-    print(f"Déplacement à gauche de la ligne {ligne}")
+    print(grille[ligne])
+    first_val = grille[ligne].pop(0)
+    print(grille[ligne])
+    grille[ligne].insert(len(grille[ligne]) - 1, first_val)
+    print(grille[ligne])
 
 def deplacer_bas(grille, colonne):
     """
@@ -97,8 +107,6 @@ def deplacer_bas(grille, colonne):
     for x in range(len(grille) - 1, 0, -1):
         grille[x][colonne] = grille[x - 1][colonne]
     grille[0][colonne] = last_val
-    print("")
-    print(f"Déplacement vers le bas de la colonne {colonne}")
 
 def deplacer_haut(grille, colonne):
     """
@@ -112,8 +120,6 @@ def deplacer_haut(grille, colonne):
     for x in range(len(grille) - 1):
         grille[x][colonne] = grille[x + 1][colonne]
     grille[len(grille)- 1][colonne] = first_val
-    print("")
-    print(f"Déplacement vers le haut de la colonne {colonne}")
 
 
 def affichage_grille(grille):
