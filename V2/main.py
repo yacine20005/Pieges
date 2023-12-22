@@ -2,6 +2,46 @@ from grilles import *
 from regles import *
 from affichage import *
 from fltk import *
+from tkinter import * 
+
+#Crée une fenêtre pour le menu
+menu = Tk()
+menu.title("Menu du Jeu")
+#=======
+
+# Définir la taille de la fenêtre du menu
+menu.geometry("1000x660")
+
+# Chargez l'image de fond
+image_fond = PhotoImage(file="pieges.ppm")
+
+# Redimensionnez l'image en utilisant subsample
+image_fond_redimensionnee = image_fond.zoom(3,3)
+
+# Créez un label pour afficher l'image redimensionnée en tant que fond
+fond_label = Label(menu, image=image_fond_redimensionnee)
+fond_label.place(x=0, y=0, relwidth=1, relheight=1)
+
+def commencer_jeu():
+    menu.destroy()  # Ferme la fenêtre du menu
+    global jeu_commence
+    jeu_commence = True
+
+def quitter_jeu():
+    menu.destroy()
+
+# Crée un bouton pour démarrer le jeu
+commencer_bouton = Button(menu, text="Démarrer le jeu", command=commencer_jeu)
+commencer_bouton.place(x=450, y=300)  # Ajustez les coordonnées x et y selon vos besoins
+
+# Crée un bouton pour quitter le jeu
+quitter_bouton = Button(menu, text="Quitter le jeu", command=quitter_jeu)
+quitter_bouton.place(x=450, y=350)  # Ajustez les coordonnées x et y selon vos besoins
+
+jeu_commence = False  # Variable pour savoir si le jeu a commencé
+while not jeu_commence:
+    menu.update()  # Mise à jour de la fenêtre du menu
+
 
 #Boucle de gameplay
 
@@ -72,53 +112,3 @@ while victoire(B) is False:
             break
     efface("bille")
     efface("tirette")  
-
-#Ancienne boucle de gameplay
-"""
-while victoire(B) is False:
-
-    tirette = None
-    mouv = ""
-    direction = ""
-    plateau = fusion(V, H)
-    print("")
-    affichage_grille(plateau)
-    affichage_grille(B)
-    while direction not in ("H", "V", "STOP"):
-        direction = input("Voulez-vous deplacer les tirettes horizontaux ou verticaux ? (H ou V ou STOP) : ")
-
-    if direction == "V":
-        while tirette not in range(len(B)) :
-            tirette = (input("Quelle tirette voulez-vous deplacer ? (0 - 6) : "))
-            if tirette.isdigit():
-                tirette = int(tirette)
-        while mouv not in ("H", "B"):
-            mouv = input("Dans quelle direction ? (H ou B) : ")
-        if mouv == "B":
-            deplacer_bas(V, tirette)
-        elif mouv == "H":
-            deplacer_haut(V, tirette)
-        bille_en_vie(B, H, V)
-        nb_coup += 1
-        print("")
-        print("Vous avez deplacer des tirettes", nb_coup, "fois")
-
-    elif direction == "H":
-        while tirette not in range(len((B)[0])):
-            tirette = (input("Quelle tirette voulez-vous deplacer ? (0 - 6) : "))
-            if tirette.isdigit():
-                tirette = int(tirette)
-        while mouv not in ("G", "D"):
-            mouv = input("Dans quelle direction ? (D ou G) : ")
-        if mouv == "G":
-            deplacer_gauche(H, tirette)
-        elif mouv == "D":
-            deplacer_droite(H, tirette)
-        bille_en_vie(B, H, V)
-        nb_coup += 1
-        print("")
-        print("Vous avez deplacer des tirettes", nb_coup, "fois")
-
-    elif direction == "STOP":
-        break
-"""
