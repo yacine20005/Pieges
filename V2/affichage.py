@@ -69,7 +69,13 @@ def affiche_bille(B, taille_plateau, taille_case, taille_bille):
     CDBY = MFH - (taille_plateau/2*taille_case) - taille_case
     for y in range(len(B)):
         for x in range(len(B)):
-            if B[y][x] == True:
+            if B[y][x] != 0:
                 X = CDBX + ((x+1) * taille_case) + taille_case/2
                 Y = CDBY + ((y+1) * taille_case) + taille_case/2
                 cercle(X,Y,taille_bille, "purple", "purple", tag="bille")
+
+def affiche_jeu(B, plateau, taille_plateau, taille_case, taille_bouton, taille_bille):
+    affiche_plateau(taille_plateau, taille_case)
+    affiche_bouton_tirette(taille_plateau, taille_case, taille_bouton)
+    affiche_tirette(plateau, taille_plateau, taille_case, taille_bouton)
+    affiche_bille(B, taille_plateau, taille_case, taille_bille)

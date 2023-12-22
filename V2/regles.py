@@ -28,3 +28,7 @@ def victoire(grille_B):
                 return False
     print("Victoire !!!")
     return True
+
+def placement_bille(n):
+    for n in range:
+        pass
