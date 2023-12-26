@@ -5,21 +5,22 @@ from fltk import *
 from tkinter import * 
 
 menu = Tk()
-menu.title("Menu du Jeu")
-menu.geometry("1000x660")
+menu.title("Pièges !")
+menu.geometry("1200x800")
 
 def commencer_jeu():
-    menu.destroy()  # Ferme la fenêtre du menu
+    menu.destroy()
     global jeu_commence
     jeu_commence = True
 
 def quitter_jeu():
     menu.destroy()
 
-commencer_bouton = Button(menu, text="Démarrer le jeu", command=commencer_jeu)
-commencer_bouton.place(x=450, y=300)
-quitter_bouton = Button(menu, text="Quitter le jeu", command=quitter_jeu)
-quitter_bouton.place(x=450, y=350) 
+commencer_bouton = Button(menu, text= "Démarrer le jeu", command = commencer_jeu)
+commencer_bouton.place(x = 550, y = 400)
+
+quitter_bouton = Button(menu, text = "Quitter le jeu", command = quitter_jeu)
+quitter_bouton.place(x = 550, y = 500) 
 
 jeu_commence = False
 while not jeu_commence:
@@ -34,9 +35,6 @@ while victoire(B):
     H = creation_grille_H()
     B = creation_grille_B()
 
-print("Bienvenue dans le jeu Pieges !")
-print("Les tirettes horizontaux sont composes de 0 et de 1")
-print("Tandis que les tirettes verticaux sont composes de 0 et de 2")
 cree_fenetre(1200, 800, redimension = True)
 rectangle(0,0,largeur_fenetre() ,hauteur_fenetre() ,"black", "black")
 
