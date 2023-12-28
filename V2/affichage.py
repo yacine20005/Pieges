@@ -1,10 +1,17 @@
 from fltk import *
-
-
-""" Fonction d'affichage"""
     
 def etat_tirette(lst, x, y):
-    x, y = x, y
+    """
+    Choisit la couleur à affiché sur la case en fonction de la présence ou non des tirettes
+
+    Args:
+        lst (list): liste contenant les couches de tirettes verticales et horizontales
+        x (int): coordonnées largeur
+        y (int): coordonnées hauteur
+
+    Returns:
+        str: couleur à affiché
+    """
     n = lst[y][x]
     if n == 0:
         return "black"
@@ -12,69 +19,116 @@ def etat_tirette(lst, x, y):
         return "blue"
     elif n == 2:
         return "yellow"
-    elif n == 3:
+    else:
         return "blue"
 
 def affiche_plateau(taille_plateau, taille_case):
-    MFL = largeur_fenetre() // 2
-    MFH = hauteur_fenetre() // 2
-    CDBX = MFL - (taille_plateau/2*taille_case) - taille_case
-    CDBY = MFH - (taille_plateau/2*taille_case) -taille_case
-    for y in range(taille_plateau):
+    """
+    Affiche le plateau 
+
+    Args:
+        taille_plateau (int): taille du plateau
+        taille_case (int): taille des cases
+    """
+    mileu_fenetre_largeur = largeur_fenetre() // 2
+    milieu_fenetre_hauteur = hauteur_fenetre() // 2
+    CDBX = mileu_fenetre_largeur - (taille_plateau/2*taille_case) - taille_case
+    CDBY = milieu_fenetre_hauteur - (taille_plateau/2*taille_case) -taille_case
+    for _ in range(taille_plateau):
         CDBY = CDBY + taille_case
-        CDBX = MFL - (taille_plateau/2*taille_case) - taille_case
-        for x in range(taille_plateau):
+        CDBX = mileu_fenetre_largeur - (taille_plateau/2*taille_case) - taille_case
+        for _ in range(taille_plateau):
             CDBX = CDBX + taille_case
-            rectangle(CDBX,CDBY,CDBX+taille_case,CDBY+taille_case, "black", "white")
+            rectangle(CDBX, CDBY, CDBX + taille_case, CDBY + taille_case, "black", "white")
 
 def affiche_tirette(plateau, taille_plateau, taille_case, taille_bouton):
-    MFL = largeur_fenetre() // 2
-    MFH = hauteur_fenetre() // 2
-    CDBX = MFL - (taille_plateau / 2 * taille_case) - taille_case
-    CDBY = MFH - (taille_plateau / 2 * taille_case) - taille_case
+    """
+    Affiche des tirettes horizontale et verticale
+
+    Args:
+        plateau (list): liste contenant l'emplacement des trous des tirettes horizontaux et verticaux
+        taille_plateau (int): taille du plateau
+        taille_case (int): taille des cases
+        taille_bouton (int): taille des boutons
+    """
+    mileu_fenetre_largeur = largeur_fenetre() // 2
+    milieu_fenetre_hauteur = hauteur_fenetre() // 2
+    CDBX = mileu_fenetre_largeur - (taille_plateau / 2 * taille_case) - taille_case
+    CDBY = milieu_fenetre_hauteur - (taille_plateau / 2 * taille_case) - taille_case
     for y in range(0, taille_plateau):
         CDBY = CDBY + taille_case
-        CDBX = MFL - (taille_plateau / 2 * taille_case) - taille_case
+        CDBX = mileu_fenetre_largeur - (taille_plateau / 2 * taille_case) - taille_case
         for x in range(0, taille_plateau):
             CDBX = CDBX + taille_case
-            cercle(CDBX + taille_case / 2, CDBY + taille_case / 2, taille_bouton, remplissage = etat_tirette(plateau, x, y), tag = "tirette")
+            cercle(CDBX + taille_case / 2, CDBY + taille_case / 2, taille_bouton,
+                   remplissage = etat_tirette(plateau, x, y), tag = "tirette")
+
 
 def affiche_bouton_tirette(taille_plateau, taille_case, taille_bouton):
-    MFL = largeur_fenetre() // 2
-    MFH = hauteur_fenetre() // 2
-    CDBX = MFL - (taille_plateau/2*taille_case) - taille_case
-    CDBY = MFH - (taille_plateau/2*taille_case) - taille_case
+    """
+    Affiche les boutons des tirettes
+
+    Args:
+        taille_plateau (int): taille du plateau
+        taille_case (int): taille des cases
+        taille_bouton (int): taille des boutons
+    """
+    mileu_fenetre_largeur = largeur_fenetre() // 2
+    milieu_fenetre_hauteur = hauteur_fenetre() // 2
+    CDBX = mileu_fenetre_largeur - (taille_plateau/2*taille_case) - taille_case
+    CDBY = milieu_fenetre_hauteur - (taille_plateau/2*taille_case) - taille_case
     for i in range(taille_plateau):
         CDBX = CDBX + taille_case
-        cercle(CDBX+taille_case/2,CDBY+taille_case/2,taille_bouton, "white", "yellow")
+        cercle(CDBX + taille_case / 2, CDBY + taille_case/2,taille_bouton, "white", "yellow")
     CDBX = CDBX + taille_case
     for i in range(taille_plateau):
         CDBY = CDBY + taille_case
         cercle(CDBX+taille_case/2,CDBY+taille_case/2,taille_bouton, "white", "blue")  
-    CDBX = MFL - (taille_plateau/2*taille_case) - taille_case
-    CDBY = MFH - (taille_plateau/2*taille_case) - taille_case
+    CDBX = mileu_fenetre_largeur - (taille_plateau/2*taille_case) - taille_case
+    CDBY = milieu_fenetre_hauteur - (taille_plateau/2*taille_case) - taille_case
     for i in range(taille_plateau):
         CDBY = CDBY + taille_case
-        cercle(CDBX+taille_case/2,CDBY+taille_case/2,taille_bouton, "white", "blue")
-    CDBX = MFL - (taille_plateau/2*taille_case) - taille_case
-    CDBY = MFH + (taille_plateau/2*taille_case) 
+        cercle(CDBX+taille_case/2,CDBY + taille_case / 2, taille_bouton, "white", "blue")
+    CDBX = mileu_fenetre_largeur - (taille_plateau/2*taille_case) - taille_case
+    CDBY = milieu_fenetre_hauteur + (taille_plateau/2*taille_case)
     for i in range(taille_plateau):
         CDBX = CDBX + taille_case
         cercle(CDBX+taille_case/2,CDBY+taille_case/2,taille_bouton, "white", "yellow")
 
 def affiche_bille(B, taille_plateau, taille_case, taille_bille):
-    MFL = largeur_fenetre() // 2
-    MFH = hauteur_fenetre() // 2
-    CDBX = MFL - (taille_plateau/2*taille_case) - taille_case
-    CDBY = MFH - (taille_plateau/2*taille_case) - taille_case
+    """
+    Affiche les billes
+
+    Args:
+        B (list): liste contenant l'emplacement des billes
+        taille_plateau (int): taille du plateau
+        taille_case (int): taille des cases
+        taille_bille (int): taille des billes
+    """
+    mileu_fenetre_largeur = largeur_fenetre() // 2 
+    milieu_fenetre_hauteur = hauteur_fenetre() // 2
+    CDBX = mileu_fenetre_largeur - (taille_plateau/2*taille_case) - taille_case
+    CDBY = milieu_fenetre_hauteur - (taille_plateau/2*taille_case) - taille_case
     for y in range(len(B)):
         for x in range(len(B)):
             if B[y][x] != 0:
                 X = CDBX + ((x+1) * taille_case) + taille_case/2
                 Y = CDBY + ((y+1) * taille_case) + taille_case/2
                 cercle(X,Y,taille_bille, "purple", "purple", tag="bille")
+    #Enumerate
 
 def affiche_jeu(B, plateau, taille_plateau, taille_case, taille_bouton, taille_bille):
+    """
+    Affiche l'intégralité des éléments du jeu sur la fenêtre
+
+    Args:
+        B (list): liste contenant l'emplacement des billes
+        plateau (list): liste contenant l'emplacement des trous des tirettes
+        taille_plateau (int): taille du plateau
+        taille_case (int): taille des cases
+        taille_bouton (int): taille des boutons 
+        taille_bille (int): taille des billes
+    """
     affiche_plateau(taille_plateau, taille_case)
     affiche_bouton_tirette(taille_plateau, taille_case, taille_bouton)
     affiche_tirette(plateau, taille_plateau, taille_case, taille_bouton)

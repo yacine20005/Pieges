@@ -3,11 +3,14 @@ from fltk import *
 
 def creation_grille_B():
     """
-    Retourne un tableau en 2 dimensions pour les billes
+    Retourne un tableau en 2 dimensions contenant l'emplacement des billes choisis aléatoirement
 
     Returns:
-        list
+        lst: liste contenant les emplacements des billes choisis aléatoirement
     """
+    
+#random.seed(x)
+
     lst = []
     for _ in range(7):
         lst2 = []
@@ -22,10 +25,10 @@ def creation_grille_B():
 
 def creation_grille_H():
     """
-    Retourne un tableau en 2 dimensions pour les tirettes horizontaux
+    Retourne un tableau en 2 dimensions contenant l'emplacement des trous choisis aléatoirement des tirettes horizontaux
 
     Returns:
-        list
+        lst: liste contenant les emplacements des trous choisis aléatoirement
     """
     lst = []
     for _ in range(7):
@@ -41,10 +44,10 @@ def creation_grille_H():
 
 def creation_grille_V():
     """
-    Retourne un tableau en 2 dimensions pour les tirettes verticaux
+    Retourne un tableau en 2 dimensions contenant l'emplacement des trous choisis aléatoirement des tirettes verticaux
 
     Returns:
-        list
+        lst: liste contenant les emplacements des trous choisis aléatoirement
     """
     lst = []
     for _ in range(7):
@@ -160,8 +163,8 @@ def fusion(TV, TH):
 def poser_bille(PB,x,y):
     PB[y][x] = True
 
-def gerer_evenement(B,V,H,x,y, coord_min_x, coord_min_y, coord_max_x, coord_max_y, taille_case, taille_bouton, hitbox_b):
-    if x > coord_min_x + taille_case  and x < coord_max_x and y > coord_min_y + taille_case and y < coord_max_y:
+def gerer_evenement(B, V, H, x, y, coord_min_x, coord_min_y, coord_max_x, coord_max_y, taille_case, taille_bouton, hitbox_b):
+    if x > coord_min_x + taille_case and x < coord_max_x and y > coord_min_y + taille_case and y < coord_max_y:
         X = int((x - coord_min_x) // taille_case) - 1
         Y = int((y - coord_min_y) // taille_case) - 1
         poser_bille(B, X, Y)
@@ -173,11 +176,11 @@ def gerer_evenement(B,V,H,x,y, coord_min_x, coord_min_y, coord_max_x, coord_max_
         Y = int((y - coord_min_y) // taille_case) - 1
         if Y in range(len((B)[0])):
             deplacer_gauche(H, Y)
-    elif x > coord_min_x + taille_case and x < coord_max_x  and y < coord_min_y + taille_case and y > coord_min_y - taille_bouton * hitbox_b :
+    elif x > coord_min_x + taille_case and x < coord_max_x and y < coord_min_y + taille_case and y > coord_min_y - taille_bouton * hitbox_b:
         X = int((x - coord_min_x) // taille_case) - 1
         if X in range(len(B)):
             deplacer_bas(V, X)
-    elif x > coord_min_x + taille_case and x < coord_max_x and y > coord_max_y and y < coord_max_y + taille_bouton * hitbox_b :
+    elif x > coord_min_x + taille_case and x < coord_max_x and y > coord_max_y and y < coord_max_y + taille_bouton * hitbox_b:
         X = int((x - coord_min_x) // taille_case) - 1
         if X in range(len(B)):
             deplacer_haut(V, X)
