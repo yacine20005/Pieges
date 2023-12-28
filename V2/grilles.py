@@ -1,14 +1,14 @@
 import random
 from fltk import *
 
-def creation_grille_B():
+def creation_grille_B(plateau):
     """
     Retourne un tableau en 2 dimensions contenant l'emplacement des billes choisis aléatoirement
 
     Returns:
         lst: liste contenant les emplacements des billes choisis aléatoirement
     """
-    
+
 #random.seed(x)
 
     lst = []
@@ -18,6 +18,8 @@ def creation_grille_B():
             chance = random.randint(1, 8)
             if chance == 1:
                 lst2.append(1)
+            elif chance == 2:
+                lst2.append(2)
             else:
                 lst2.append(0)
         lst.append(lst2)
@@ -120,27 +122,6 @@ def deplacer_haut(grille, colonne):
         grille[x][colonne] = grille[x + 1][colonne]
     grille[len(grille)- 1][colonne] = first_val
 
-
-def affichage_grille(grille):
-    """
-    Affiche un tableau en 2 dimensions ligne par ligne
-
-    Args:
-        grille (list): tableaux en 2 dimensions représentant la grille de la couche de jeu
-    """
-    for x in grille:
-        print(x)
-    print("")
-
-def comparaison(PL,TV,TH):
-    """
-    Fonction inutilisé ?
-    """
-    for y in range(len(PL)):
-        for x in range(len(PL)):
-            if TV[y][x] == True and TH[y][x] == True:
-                PL[y][x] = True
-
 def fusion(TV, TH):
     """
     Fusionne la couche des tirettes verticales et horizontales pour ne former qu'un tableau en 2 dimensions qui sera affiché au joueur
@@ -161,7 +142,7 @@ def fusion(TV, TH):
     return LstVide
 
 def poser_bille(PB,x,y):
-    PB[y][x] = True
+    PB[y][x] = 1
 
 def gerer_evenement(B, V, H, x, y, coord_min_x, coord_min_y, coord_max_x, coord_max_y, taille_case, taille_bouton, hitbox_b):
     if x > coord_min_x + taille_case and x < coord_max_x and y > coord_min_y + taille_case and y < coord_max_y:

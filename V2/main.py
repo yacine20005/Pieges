@@ -18,24 +18,26 @@ commencer_bouton = Button(menu, text= "Démarrer le jeu", command = commencer_je
 commencer_bouton.place(x = 550, y = 400)
 
 quitter_bouton = Button(menu, text = "Quitter le jeu", command = quitter_jeu)
-quitter_bouton.place(x = 550, y = 500) 
+quitter_bouton.place(x = 550, y = 500)
 
 while not jeu_est_commence():
     menu.update()
 
 V = creation_grille_V()
 H = creation_grille_H()
-B = creation_grille_B()
+plateau = fusion(V, H)
+B = creation_grille_B(plateau)
 
 while victoire(B):
     V = creation_grille_V()
     H = creation_grille_H()
-    B = creation_grille_B()
+    plateau = fusion(V, H)
+    B = creation_grille_B(plateau)
 
 cree_fenetre(1200, 800, redimension = True)
 rectangle(0,0, largeur_fenetre() , hauteur_fenetre() ,"black", "black")
 
-plateau = fusion(V, H)
+nb_joueur = 2
 taille_case = min(largeur_fenetre() ,hauteur_fenetre()) / 10
 taille_plateau, taille_bouton, taille_bille, hitbox_b = 7, 25, 20, 3
 coeff_bouton, coeff_bille, coeff_hitbox_b = 0.25, 0.2, 0.3
@@ -64,7 +66,8 @@ while victoire(B) is False:
             taille_bille = coeff_bille * taille_case
             hitbox_b = coeff_hitbox_b * taille_case
             affiche_jeu(B, plateau, taille_plateau, taille_case, taille_bouton, taille_bille)
-            coord_min_x, coord_max_x, coord_min_y, coord_max_y = calcul_coord(taille_case, taille_plateau)
+            coord_min_x, coord_max_x, coord_min_y, coord_max_y = calcul_coord(taille_case,
+                                                                              taille_plateau)
         if tev =="Quitte":
             break
     efface("bille")
