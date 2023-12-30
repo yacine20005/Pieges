@@ -1,6 +1,22 @@
 import random
 from fltk import *
 
+def creation_grille_B_vide():
+    """
+    Retourne un tableau qui contiendra prochainement l'emplacement des billes placés
+
+    Returns:
+        lst: liste contenant les emplacements des billes (vide pour le moment)
+    """
+    lst = []
+    for _ in range(7):
+        lst2 = []
+        for _ in range(7):
+                lst2.append(0)
+        lst.append(lst2)
+    affichage_grille(lst)
+    return lst
+
 def old_creation_grille_B(plateau):
     """
     Retourne un tableau en 2 dimensions contenant l'emplacement des billes choisis aléatoirement
@@ -46,7 +62,9 @@ def creation_grille_B(plateau):
         for x in range(7):
             if plateau[y][x] == 0:
                 pass
-            lst_ligne.append(random.choice(valeur))
+            choix=random.choice(valeur)
+            lst_ligne.append(choix)
+            valeur.remove(choix)
         lst.append(lst_ligne)
     return lst
     
@@ -166,16 +184,18 @@ def fusion(TV, TH):
         LstVide.append(LstVide2)
     return LstVide
 
-def poser_bille(PB,x,y):
-    PB[y][x] = 1
+def poser_bille(PB,x,y, joueur):
+    PB[y][x] = int(joueur)
 
-def gerer_evenement(B, V, H, x, y, coord_min_x, coord_min_y, coord_max_x, coord_max_y, taille_case, taille_bouton, hitbox_b):
+def gerer_evenement_bille(joueur,B, x, y, coord_min_x, coord_min_y, coord_max_x, coord_max_y, taille_case):
     if x > coord_min_x + taille_case and x < coord_max_x and y > coord_min_y + taille_case and y < coord_max_y:
         X = int((x - coord_min_x) // taille_case) - 1
         Y = int((y - coord_min_y) // taille_case) - 1
-        poser_bille(B, X, Y)
+        poser_bille(B, X, Y,joueur)
         
-    elif x > coord_min_x and x < coord_min_x + taille_case and y > coord_min_y and y < coord_max_y:
+    
+def gerer_evenement_tirette(B, V, H, x, y, coord_min_x, coord_min_y, coord_max_x, coord_max_y, taille_case, taille_bouton, hitbox_b): 
+    if x > coord_min_x and x < coord_min_x + taille_case and y > coord_min_y and y < coord_max_y:
         Y = int((y - coord_min_y) // taille_case) - 1
         if Y in range(len((B)[0])):
             deplacer_droite(H, Y)

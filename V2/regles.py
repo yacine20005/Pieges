@@ -7,12 +7,16 @@ def bille_en_vie(grille_B, grille_H, grille_V):
         grille_H (list): Tableau en 2 dimensions représentant les tirettes horizontaux
         grille_V (list): Tableau en 2 dimensions représentant les tirettes verticaux
     """
+    nb_de_billes_enlever = 0
     for y in range(len(grille_B)):
         for x in range(len(grille_B[0])):
-            if grille_H[y][x] + grille_V[y][x] == 0:
+            if grille_H[y][x] + grille_V[y][x] == 0 and grille_B[y][x] != 0:
                 grille_B[y][x] = 0
+                nb_de_billes_enlever = nb_de_billes_enlever + 1
+    return nb_de_billes_enlever
 
-def victoire(grille_B):
+
+def victoire(grille_B, X):
     """
     Parcourt l'ensemble de la grille bille pour vérifier la victoire du joueur ou non
 
@@ -22,13 +26,25 @@ def victoire(grille_B):
     Returns:
         bool: True si il n'y plus de billes et False si il en reste qu'un
     """
-    for y in range(len(grille_B)):
-        for x in range(len(grille_B[0])):
-            if grille_B[y][x] != 0:
-                return False
-    print("Victoire !!!")
-    return True
+    if X == True:
+        return False
+    else:
+        for y in range(len(grille_B)):
+            for x in range(len(grille_B[0])):
+                if grille_B[y][x] != 0:
+                    return False
+        print("Victoire !!!")
+        return True
 
 def placement_bille(n):
     for n in range:
         pass
+
+def creer_liste_joueurs(nombre_joueurs):
+    if nombre_joueurs < 1:
+        raise ValueError("Le nombre de joueurs doit être supérieur ou égal à 1")
+    
+    liste_joueur = [f"{i}" for i in range(1, nombre_joueurs + 1)]
+    liste_joueurs = []
+    liste_joueurs.append(liste_joueur)
+    return liste_joueurs

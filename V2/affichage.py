@@ -109,8 +109,6 @@ def affiche_bille(b, taille_plateau, taille_case, taille_bille):
     milieu_fenetre_hauteur = hauteur_fenetre() // 2
     CDBX = mileu_fenetre_largeur - (taille_plateau / 2 * taille_case) - taille_case
     CDBY = milieu_fenetre_hauteur - (taille_plateau / 2 * taille_case) - taille_case
-    print(len(b))
-    print(len(b[0]))
     for y in range(len(b)):
         for x in range(len(b[0])):
             if b[y][x] != 0:
