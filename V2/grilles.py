@@ -1,30 +1,55 @@
 import random
 from fltk import *
 
-def creation_grille_B(plateau):
+def old_creation_grille_B(plateau):
     """
     Retourne un tableau en 2 dimensions contenant l'emplacement des billes choisis aléatoirement
 
     Returns:
         lst: liste contenant les emplacements des billes choisis aléatoirement
     """
-
-#random.seed(x)
-
+    cpt_j1 = 0
+    cpt_j2 = 0
     lst = []
-    for _ in range(7):
+    for y in range(7):
         lst2 = []
-        for _ in range(7):
-            chance = random.randint(1, 8)
-            if chance == 1:
-                lst2.append(1)
-            elif chance == 2:
-                lst2.append(2)
+        for x in range(7):
+            if x == 6 and y == 6:
+                if cpt_j1 > cpt_j2:
+                    lst2.append(2)
             else:
-                lst2.append(0)
+                if plateau[y][x] == 0:
+                    lst2.append(0)
+                else:
+                    chance = random.randint(1, 8)
+                    if chance == 1:
+                        if cpt_j1 <= cpt_j2:
+                            lst2.append(1)
+                            cpt_j1 += 1
+                        else:
+                            lst2.append(2)
+                            cpt_j2 += 1
+                    else:
+                        lst2.append(0)
+                    print(chance, cpt_j1, cpt_j2)
         lst.append(lst2)
     return lst
 
+def creation_grille_B(plateau):
+    valeur = [1] * 7 + [2] * 7
+    manquant = len(plateau) ** 2 - len(valeur)
+    valeur = valeur + [0] * manquant
+    random.shuffle(valeur)
+    lst = []
+    for y in range(7):
+        lst_ligne = []
+        for x in range(7):
+            if plateau[y][x] == 0:
+                pass
+            lst_ligne.append(random.choice(valeur))
+        lst.append(lst_ligne)
+    return lst
+    
 def creation_grille_H():
     """
     Retourne un tableau en 2 dimensions contenant l'emplacement des trous choisis aléatoirement des tirettes horizontaux
@@ -149,18 +174,22 @@ def gerer_evenement(B, V, H, x, y, coord_min_x, coord_min_y, coord_max_x, coord_
         X = int((x - coord_min_x) // taille_case) - 1
         Y = int((y - coord_min_y) // taille_case) - 1
         poser_bille(B, X, Y)
+        
     elif x > coord_min_x and x < coord_min_x + taille_case and y > coord_min_y and y < coord_max_y:
         Y = int((y - coord_min_y) // taille_case) - 1
         if Y in range(len((B)[0])):
             deplacer_droite(H, Y)
+            
     elif x > coord_max_x and x < coord_max_x + taille_bouton * hitbox_b  and y > coord_min_y and y < coord_max_y:
         Y = int((y - coord_min_y) // taille_case) - 1
         if Y in range(len((B)[0])):
             deplacer_gauche(H, Y)
+            
     elif x > coord_min_x + taille_case and x < coord_max_x and y < coord_min_y + taille_case and y > coord_min_y - taille_bouton * hitbox_b:
         X = int((x - coord_min_x) // taille_case) - 1
         if X in range(len(B)):
             deplacer_bas(V, X)
+            
     elif x > coord_min_x + taille_case and x < coord_max_x and y > coord_max_y and y < coord_max_y + taille_bouton * hitbox_b:
         X = int((x - coord_min_x) // taille_case) - 1
         if X in range(len(B)):

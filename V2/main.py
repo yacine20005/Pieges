@@ -27,6 +27,7 @@ V = creation_grille_V()
 H = creation_grille_H()
 plateau = fusion(V, H)
 B = creation_grille_B(plateau)
+affichage_grille(B)
 
 while victoire(B):
     V = creation_grille_V()
@@ -44,6 +45,9 @@ coeff_bouton, coeff_bille, coeff_hitbox_b = 0.25, 0.2, 0.3
 coord_min_x, coord_max_x, coord_min_y, coord_max_y = calcul_coord(taille_case, taille_plateau)
 
 #Nouvelle boucle de gameplay
+
+#While bille des 2 joueur non égal à 7 ?
+#Demander de poser des billes à chaque jouer
 
 while victoire(B) is False:
 
