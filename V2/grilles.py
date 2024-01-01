@@ -1,5 +1,6 @@
 import random
 from fltk import *
+from regles import *
 
 def creation_grille_B_vide():
     """
@@ -14,7 +15,6 @@ def creation_grille_B_vide():
         for _ in range(7):
                 lst2.append(0)
         lst.append(lst2)
-    affichage_grille(lst)
     return lst
 
 def old_creation_grille_B(plateau):
@@ -191,8 +191,18 @@ def gerer_evenement_bille(joueur,B, x, y, coord_min_x, coord_min_y, coord_max_x,
     if x > coord_min_x + taille_case and x < coord_max_x and y > coord_min_y + taille_case and y < coord_max_y:
         X = int((x - coord_min_x) // taille_case) - 1
         Y = int((y - coord_min_y) // taille_case) - 1
-        poser_bille(B, X, Y,joueur)
+        if verifier_bille(B, x, y, coord_min_x, coord_min_y, taille_case)==True:
+            poser_bille(B, X, Y,joueur)
+        print(verifier_bille(B, x, y, coord_min_x, coord_min_y, taille_case))
+
         
+def verifier_bille(B, x, y, coord_min_x, coord_min_y, taille_case):
+        X = int((x - coord_min_x) // taille_case) - 1
+        Y = int((y - coord_min_y) // taille_case) - 1
+        if B[Y][X] == 0:
+            return True
+        else: 
+            return False
     
 def gerer_evenement_tirette(B, V, H, x, y, coord_min_x, coord_min_y, coord_max_x, coord_max_y, taille_case, taille_bouton, hitbox_b): 
     if x > coord_min_x and x < coord_min_x + taille_case and y > coord_min_y and y < coord_max_y:

@@ -11,8 +11,21 @@ from menu import *
 #chercher comment ouvrir l'explorateur de fichier pour choisir la sauvegarde
 #write()
 
+
+
 menu.title("Pièges !")
 menu.geometry("1200x800")
+
+# Chargez l'image de fond
+
+image_fond = PhotoImage(file="fond_jeu_menu.ppm")
+
+# Redimensionnez l'image en utilisant subsample
+image_fond_redimensionnee = image_fond.zoom(2)
+
+# Créez un label pour afficher l'image redimensionnée en tant que fond
+fond_label = Label(menu, image=image_fond_redimensionnee)
+fond_label.place(x=0, y=0, relwidth=1, relheight=1)
 
 commencer_bouton = Button(menu, text= "Démarrer le jeu", command = commencer_jeu)
 commencer_bouton.place(x = 550, y = 400)
@@ -28,6 +41,7 @@ H = creation_grille_H()
 plateau = fusion(V, H)
 B = creation_grille_B_vide()
 
+
 """while victoire(B):
     V = creation_grille_V()
     H = creation_grille_H()
@@ -37,7 +51,8 @@ B = creation_grille_B_vide()
 cree_fenetre(1200, 800, redimension = True)
 rectangle(0,0, largeur_fenetre() , hauteur_fenetre() ,"black", "black")
 
-nb_joueur = 4
+
+nb_joueur = 2
 taille_case = min(largeur_fenetre() ,hauteur_fenetre()) / 10
 taille_plateau, taille_bouton, taille_bille, hitbox_b = 7, 25, 20, 3
 coeff_bouton, coeff_bille, coeff_hitbox_b = 0.25, 0.2, 0.3
@@ -47,10 +62,6 @@ nb_de_billes_par_joueur= 2
 nb_de_billes_poser = 0
 lstjoueur = creer_liste_joueurs(nb_joueur)
 
-"""C'est fait"""
-#While bille des 2 joueur non égal à 7 ?
-#Demander de poser des billes à chaque jouer
-
 """
 while bille_en_vie(B,V,H)!=0:
     B = creation_grille_B(plateau)
@@ -59,17 +70,17 @@ while bille_en_vie(B,V,H)!=0:
 while victoire(B, phase_1) is False :
 
     plateau = fusion(V, H)
+    joueur = lstjoueur[0][0]
     affiche_jeu(B, plateau, taille_plateau, taille_case, taille_bouton, taille_bille)
     ev = attend_ev()
     if ev is not None:
         tev = type_ev(ev)
         if tev == "ClicGauche":
             if nb_de_billes_poser != nb_joueur * nb_de_billes_par_joueur:
-                joueur = lstjoueur[0][0]
                 x,y = abscisse(ev), ordonnee(ev)
                 gerer_evenement_bille(joueur,B,x, y, coord_min_x, coord_min_y, 
                                         coord_max_x, coord_max_y, taille_case)
-                while bille_en_vie(B, H, V)!= 0:
+                while bille_en_vie(B, H, V)!= 0 :
                     ev = attend_ev()
                     tev = type_ev(ev)
                     if tev == "ClicGauche":
@@ -77,13 +88,13 @@ while victoire(B, phase_1) is False :
                         gerer_evenement_bille(joueur,B,x, y, coord_min_x, coord_min_y, 
                                         coord_max_x, coord_max_y, taille_case)
                 nb_de_billes_poser = nb_de_billes_poser + 1
-                deplacer_gauche(lstjoueur,0)
             else:
                 phase_1 = False
                 x,y = abscisse(ev), ordonnee(ev)
                 gerer_evenement_tirette(B, V, H, x, y, coord_min_x, coord_min_y,
                                         coord_max_x, coord_max_y, taille_case, taille_bouton, hitbox_b)
                 bille_en_vie(B, H, V)
+            deplacer_gauche(lstjoueur,0)
         if tev == "Redimension":
             efface_tout()
             rectangle(0,0,largeur_fenetre() ,hauteur_fenetre() ,"black", "black")

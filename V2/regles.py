@@ -36,10 +36,6 @@ def victoire(grille_B, X):
         print("Victoire !!!")
         return True
 
-def placement_bille(n):
-    for n in range:
-        pass
-
 def creer_liste_joueurs(nombre_joueurs):
     if nombre_joueurs < 1:
         raise ValueError("Le nombre de joueurs doit être supérieur ou égal à 1")

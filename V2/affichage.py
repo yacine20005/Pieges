@@ -123,6 +123,16 @@ def affiche_bille(b, taille_plateau, taille_case, taille_bille):
                 elif b[y][x] == 4:
                     cercle(X, Y, taille_bille, "grey", "grey", tag = "bille_4")
     #Enumerate
+                    
+def affiche_texte(taille_plateau, taille_case, joueur):
+    efface("texte_joueur")
+    mileu_fenetre_largeur = largeur_fenetre() // 2
+    milieu_fenetre_hauteur = hauteur_fenetre() // 2
+    CDBX = mileu_fenetre_largeur - (taille_plateau / 2 * taille_case) - taille_case
+    CDBY = milieu_fenetre_hauteur - (taille_plateau / 2 * taille_case) - taille_case
+    texte_a_afficher = f"Au tour du joueur, {joueur[0]}, de jouer"
+    print(texte_a_afficher)
+    texte(CDBX - taille_case, CDBY, texte_a_afficher, "White", tag="texte_joueur", taille=24)
 
 def affiche_jeu(b, plateau, taille_plateau, taille_case, taille_bouton, taille_bille):
     """
