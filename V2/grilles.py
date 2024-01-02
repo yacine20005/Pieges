@@ -192,8 +192,10 @@ def gerer_evenement_bille(joueur,B, x, y, coord_min_x, coord_min_y, coord_max_x,
         X = int((x - coord_min_x) // taille_case) - 1
         Y = int((y - coord_min_y) // taille_case) - 1
         if verifier_bille(B, x, y, coord_min_x, coord_min_y, taille_case)==True:
+            print(verifier_bille(B, x, y, coord_min_x, coord_min_y, taille_case))
             poser_bille(B, X, Y,joueur)
-        print(verifier_bille(B, x, y, coord_min_x, coord_min_y, taille_case))
+        else:
+            print(verifier_bille(B, x, y, coord_min_x, coord_min_y, taille_case))
 
         
 def verifier_bille(B, x, y, coord_min_x, coord_min_y, taille_case):

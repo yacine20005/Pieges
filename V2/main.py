@@ -61,6 +61,7 @@ phase_1 = True
 nb_de_billes_par_joueur= 2
 nb_de_billes_poser = 0
 lstjoueur = creer_liste_joueurs(nb_joueur)
+Banane = False
 
 """
 while bille_en_vie(B,V,H)!=0:
@@ -69,6 +70,7 @@ while bille_en_vie(B,V,H)!=0:
 
 while victoire(B, phase_1) is False :
 
+    Banane = False
     plateau = fusion(V, H)
     joueur = lstjoueur[0][0]
     affiche_jeu(B, plateau, taille_plateau, taille_case, taille_bouton, taille_bille)
@@ -78,8 +80,20 @@ while victoire(B, phase_1) is False :
         if tev == "ClicGauche":
             if nb_de_billes_poser != nb_joueur * nb_de_billes_par_joueur:
                 x,y = abscisse(ev), ordonnee(ev)
-                gerer_evenement_bille(joueur,B,x, y, coord_min_x, coord_min_y, 
-                                        coord_max_x, coord_max_y, taille_case)
+                if verifier_bille(B, x, y, coord_min_x, coord_min_y, taille_case):
+                    gerer_evenement_bille(joueur,B,x, y, coord_min_x, coord_min_y, 
+                                            coord_max_x, coord_max_y, taille_case)
+                else:
+                    while not Banane:
+                        print("banana")
+                        ev = attend_ev()
+                        tev = type_ev(ev)
+                        if tev == "ClicGauche":
+                            x,y = abscisse(ev), ordonnee(ev)
+                            if verifier_bille(B, x, y, coord_min_x, coord_min_y, taille_case):
+                                gerer_evenement_bille(joueur,B,x, y, coord_min_x, coord_min_y, 
+                                                coord_max_x, coord_max_y, taille_case)
+                                Banane = True
                 while bille_en_vie(B, H, V)!= 0 :
                     ev = attend_ev()
                     tev = type_ev(ev)
@@ -88,6 +102,7 @@ while victoire(B, phase_1) is False :
                         gerer_evenement_bille(joueur,B,x, y, coord_min_x, coord_min_y, 
                                         coord_max_x, coord_max_y, taille_case)
                 nb_de_billes_poser = nb_de_billes_poser + 1
+                print(nb_de_billes_poser)
             else:
                 phase_1 = False
                 x,y = abscisse(ev), ordonnee(ev)
@@ -95,6 +110,7 @@ while victoire(B, phase_1) is False :
                                         coord_max_x, coord_max_y, taille_case, taille_bouton, hitbox_b)
                 bille_en_vie(B, H, V)
             deplacer_gauche(lstjoueur,0)
+            affichage_grille(B)
         if tev == "Redimension":
             efface_tout()
             rectangle(0,0,largeur_fenetre() ,hauteur_fenetre() ,"black", "black")
