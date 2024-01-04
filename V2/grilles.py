@@ -156,10 +156,11 @@ def poser_bille(PB,x,y, joueur):
 def verifier_bille_presente(B, x, y, coord_min_x, coord_min_y, taille_case):
         X = int((x - coord_min_x) // taille_case) - 1
         Y = int((y - coord_min_y) // taille_case) - 1
-        if B[Y][X] == 0:
-            return True
-        else: 
-            return False
+        print(range(len(B)))
+        if X in range(len(B)) and Y in range(len(B)):
+            if B[Y][X] == 0:
+                return True
+        return False
 
 def gerer_pose_bille(joueur,B, x, y, coord_min_x, coord_min_y, coord_max_x, coord_max_y, taille_case):
     if x > coord_min_x + taille_case and x < coord_max_x and y > coord_min_y + taille_case and y < coord_max_y:
