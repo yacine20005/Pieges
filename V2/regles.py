@@ -7,13 +7,13 @@ def bille_en_vie(grille_B, grille_H, grille_V):
         grille_H (list): Tableau en 2 dimensions représentant les tirettes horizontaux
         grille_V (list): Tableau en 2 dimensions représentant les tirettes verticaux
     """
-    nb_de_billes_enlever = 0
+    nb_billes_tombe = 0
     for y in range(len(grille_B)):
         for x in range(len(grille_B[0])):
             if grille_H[y][x] + grille_V[y][x] == 0 and grille_B[y][x] != 0:
                 grille_B[y][x] = 0
-                nb_de_billes_enlever = nb_de_billes_enlever + 1
-    return nb_de_billes_enlever
+                nb_billes_tombe = nb_billes_tombe + 1
+    return nb_billes_tombe
 
 
 def victoire(grille_B, X):

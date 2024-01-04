@@ -17,40 +17,6 @@ def creation_grille_B_vide():
         lst.append(lst2)
     return lst
 
-def old_creation_grille_B(plateau):
-    """
-    Retourne un tableau en 2 dimensions contenant l'emplacement des billes choisis aléatoirement
-
-    Returns:
-        lst: liste contenant les emplacements des billes choisis aléatoirement
-    """
-    cpt_j1 = 0
-    cpt_j2 = 0
-    lst = []
-    for y in range(7):
-        lst2 = []
-        for x in range(7):
-            if x == 6 and y == 6:
-                if cpt_j1 > cpt_j2:
-                    lst2.append(2)
-            else:
-                if plateau[y][x] == 0:
-                    lst2.append(0)
-                else:
-                    chance = random.randint(1, 8)
-                    if chance == 1:
-                        if cpt_j1 <= cpt_j2:
-                            lst2.append(1)
-                            cpt_j1 += 1
-                        else:
-                            lst2.append(2)
-                            cpt_j2 += 1
-                    else:
-                        lst2.append(0)
-                    print(chance, cpt_j1, cpt_j2)
-        lst.append(lst2)
-    return lst
-
 def creation_grille_B(plateau):
     valeur = [1] * 7 + [2] * 7
     manquant = len(plateau) ** 2 - len(valeur)
@@ -62,7 +28,7 @@ def creation_grille_B(plateau):
         for x in range(7):
             if plateau[y][x] == 0:
                 pass
-            choix=random.choice(valeur)
+            choix = random.choice(valeur)
             lst_ligne.append(choix)
             valeur.remove(choix)
         lst.append(lst_ligne)
@@ -187,42 +153,38 @@ def fusion(TV, TH):
 def poser_bille(PB,x,y, joueur):
     PB[y][x] = int(joueur)
 
-def gerer_evenement_bille(joueur,B, x, y, coord_min_x, coord_min_y, coord_max_x, coord_max_y, taille_case):
-    if x > coord_min_x + taille_case and x < coord_max_x and y > coord_min_y + taille_case and y < coord_max_y:
-        X = int((x - coord_min_x) // taille_case) - 1
-        Y = int((y - coord_min_y) // taille_case) - 1
-        if verifier_bille(B, x, y, coord_min_x, coord_min_y, taille_case)==True:
-            print(verifier_bille(B, x, y, coord_min_x, coord_min_y, taille_case))
-            poser_bille(B, X, Y,joueur)
-        else:
-            print(verifier_bille(B, x, y, coord_min_x, coord_min_y, taille_case))
-
-        
-def verifier_bille(B, x, y, coord_min_x, coord_min_y, taille_case):
+def verifier_bille_presente(B, x, y, coord_min_x, coord_min_y, taille_case):
         X = int((x - coord_min_x) // taille_case) - 1
         Y = int((y - coord_min_y) // taille_case) - 1
         if B[Y][X] == 0:
             return True
         else: 
             return False
+
+def gerer_pose_bille(joueur,B, x, y, coord_min_x, coord_min_y, coord_max_x, coord_max_y, taille_case):
+    if x > coord_min_x + taille_case and x < coord_max_x and y > coord_min_y + taille_case and y < coord_max_y:
+        X = int((x - coord_min_x) // taille_case) - 1
+        Y = int((y - coord_min_y) // taille_case) - 1
+        if verifier_bille_presente(B, x, y, coord_min_x, coord_min_y, taille_case):
+            poser_bille(B, X, Y,joueur)
     
-def gerer_evenement_tirette(B, V, H, x, y, coord_min_x, coord_min_y, coord_max_x, coord_max_y, taille_case, taille_bouton, hitbox_b): 
+def gerer_evenement_tirette(B, V, H, x, y, coord_min_x, coord_min_y, coord_max_x, coord_max_y, taille_case, taille_bouton, hit_box_bouton): 
     if x > coord_min_x and x < coord_min_x + taille_case and y > coord_min_y and y < coord_max_y:
         Y = int((y - coord_min_y) // taille_case) - 1
         if Y in range(len((B)[0])):
             deplacer_droite(H, Y)
             
-    elif x > coord_max_x and x < coord_max_x + taille_bouton * hitbox_b  and y > coord_min_y and y < coord_max_y:
+    elif x > coord_max_x and x < coord_max_x + taille_bouton * hit_box_bouton  and y > coord_min_y and y < coord_max_y:
         Y = int((y - coord_min_y) // taille_case) - 1
         if Y in range(len((B)[0])):
             deplacer_gauche(H, Y)
             
-    elif x > coord_min_x + taille_case and x < coord_max_x and y < coord_min_y + taille_case and y > coord_min_y - taille_bouton * hitbox_b:
+    elif x > coord_min_x + taille_case and x < coord_max_x and y < coord_min_y + taille_case and y > coord_min_y - taille_bouton * hit_box_bouton:
         X = int((x - coord_min_x) // taille_case) - 1
         if X in range(len(B)):
             deplacer_bas(V, X)
             
-    elif x > coord_min_x + taille_case and x < coord_max_x and y > coord_max_y and y < coord_max_y + taille_bouton * hitbox_b:
+    elif x > coord_min_x + taille_case and x < coord_max_x and y > coord_max_y and y < coord_max_y + taille_bouton * hit_box_bouton:
         X = int((x - coord_min_x) // taille_case) - 1
         if X in range(len(B)):
             deplacer_haut(V, X)
@@ -233,3 +195,9 @@ def calcul_coord(taille_case, taille_plateau):
     coord_min_y = hauteur_fenetre() / 2 - (taille_plateau/2 * taille_case) - taille_case
     coord_max_y = (coord_min_y + taille_case) + (taille_case * taille_plateau)
     return coord_min_x, coord_max_x, coord_min_y, coord_max_y
+
+def calcul_redimension(taille_case, coeff_bouton, coeff_bille, coeff_hitbox_bouton):
+    taille_bouton = coeff_bouton * taille_case
+    taille_bille = coeff_bille * taille_case
+    hitbox_bouton = coeff_hitbox_bouton * taille_case
+    return taille_bouton, taille_bille, hitbox_bouton
