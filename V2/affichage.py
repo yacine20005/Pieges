@@ -32,14 +32,15 @@ def affiche_plateau(taille_plateau, taille_case):
     """
     mileu_fenetre_largeur = largeur_fenetre() // 2
     milieu_fenetre_hauteur = hauteur_fenetre() // 2
-    CDBX = mileu_fenetre_largeur - (taille_plateau/2*taille_case) - taille_case
-    CDBY = milieu_fenetre_hauteur - (taille_plateau/2*taille_case) -taille_case
+    coord_bord_x = mileu_fenetre_largeur - (taille_plateau/2*taille_case) - taille_case
+    coord_bord_y = milieu_fenetre_hauteur - (taille_plateau/2*taille_case) -taille_case
     for _ in range(taille_plateau):
-        CDBY = CDBY + taille_case
-        CDBX = mileu_fenetre_largeur - (taille_plateau/2*taille_case) - taille_case
+        coord_bord_y = coord_bord_y + taille_case
+        coord_bord_x = mileu_fenetre_largeur - (taille_plateau/2*taille_case) - taille_case
         for _ in range(taille_plateau):
-            CDBX = CDBX + taille_case
-            rectangle(CDBX, CDBY, CDBX + taille_case, CDBY + taille_case, "black", "white")
+            coord_bord_x = coord_bord_x + taille_case
+            rectangle(coord_bord_x, coord_bord_y, coord_bord_x + taille_case,
+                      coord_bord_y + taille_case, "black", "white")
 
 def affiche_tirette(plateau, taille_plateau, taille_case, taille_bouton):
     """
@@ -53,14 +54,14 @@ def affiche_tirette(plateau, taille_plateau, taille_case, taille_bouton):
     """
     mileu_fenetre_largeur = largeur_fenetre() // 2
     milieu_fenetre_hauteur = hauteur_fenetre() // 2
-    CDBX = mileu_fenetre_largeur - (taille_plateau / 2 * taille_case) - taille_case
-    CDBY = milieu_fenetre_hauteur - (taille_plateau / 2 * taille_case) - taille_case
+    coord_bord_x = mileu_fenetre_largeur - (taille_plateau / 2 * taille_case) - taille_case
+    coord_bord_y = milieu_fenetre_hauteur - (taille_plateau / 2 * taille_case) - taille_case
     for y in range(0, taille_plateau):
-        CDBY = CDBY + taille_case
-        CDBX = mileu_fenetre_largeur - (taille_plateau / 2 * taille_case) - taille_case
+        coord_bord_y = coord_bord_y + taille_case
+        coord_bord_x = mileu_fenetre_largeur - (taille_plateau / 2 * taille_case) - taille_case
         for x in range(0, taille_plateau):
-            CDBX = CDBX + taille_case
-            cercle(CDBX + taille_case / 2, CDBY + taille_case / 2, taille_bouton,
+            coord_bord_x = coord_bord_x + taille_case
+            cercle(coord_bord_x + taille_case / 2, coord_bord_y + taille_case / 2, taille_bouton,
                    remplissage = etat_tirette(plateau, x, y), tag = "tirette")
 
 
@@ -75,25 +76,28 @@ def affiche_bouton_tirette(taille_plateau, taille_case, taille_bouton):
     """
     mileu_fenetre_largeur = largeur_fenetre() // 2
     milieu_fenetre_hauteur = hauteur_fenetre() // 2
-    CDBX = mileu_fenetre_largeur - (taille_plateau/2*taille_case) - taille_case
-    CDBY = milieu_fenetre_hauteur - (taille_plateau/2*taille_case) - taille_case
+    coord_bord_x = mileu_fenetre_largeur - (taille_plateau/2*taille_case) - taille_case
+    coord_bord_y = milieu_fenetre_hauteur - (taille_plateau/2*taille_case) - taille_case
     for _ in range(taille_plateau):
-        CDBX = CDBX + taille_case
-        cercle(CDBX + taille_case / 2, CDBY + taille_case/2,taille_bouton, "white", "yellow")
-    CDBX = CDBX + taille_case
+        coord_bord_x = coord_bord_x + taille_case
+        cercle(coord_bord_x + taille_case / 2, coord_bord_y + taille_case / 2,
+               taille_bouton, "white", "yellow")
+    coord_bord_x = coord_bord_x + taille_case
     for _ in range(taille_plateau):
-        CDBY = CDBY + taille_case
-        cercle(CDBX+taille_case/2,CDBY+taille_case/2,taille_bouton, "white", "blue")
-    CDBX = mileu_fenetre_largeur - (taille_plateau/2*taille_case) - taille_case
-    CDBY = milieu_fenetre_hauteur - (taille_plateau/2*taille_case) - taille_case
+        coord_bord_y = coord_bord_y + taille_case
+        cercle(coord_bord_x+taille_case/2,coord_bord_y+taille_case/2,taille_bouton, "white", "blue")
+    coord_bord_x = mileu_fenetre_largeur - (taille_plateau/2*taille_case) - taille_case
+    coord_bord_y = milieu_fenetre_hauteur - (taille_plateau/2*taille_case) - taille_case
     for _ in range(taille_plateau):
-        CDBY = CDBY + taille_case
-        cercle(CDBX+taille_case/2,CDBY + taille_case / 2, taille_bouton, "white", "blue")
-    CDBX = mileu_fenetre_largeur - (taille_plateau/2*taille_case) - taille_case
-    CDBY = milieu_fenetre_hauteur + (taille_plateau/2*taille_case)
+        coord_bord_y = coord_bord_y + taille_case
+        cercle(coord_bord_x+taille_case/2,coord_bord_y + taille_case / 2,
+               taille_bouton, "white", "blue")
+    coord_bord_x = mileu_fenetre_largeur - (taille_plateau/2*taille_case) - taille_case
+    coord_bord_y = milieu_fenetre_hauteur + (taille_plateau/2*taille_case)
     for _ in range(taille_plateau):
-        CDBX = CDBX + taille_case
-        cercle(CDBX+taille_case/2,CDBY+taille_case/2,taille_bouton, "white", "yellow")
+        coord_bord_x = coord_bord_x + taille_case
+        cercle(coord_bord_x + taille_case / 2, coord_bord_y + taille_case / 2,
+               taille_bouton, "white", "yellow")
 
 def affiche_bille(b, taille_plateau, taille_case, taille_bille):
     """
@@ -107,34 +111,45 @@ def affiche_bille(b, taille_plateau, taille_case, taille_bille):
     """
     mileu_fenetre_largeur = largeur_fenetre() // 2
     milieu_fenetre_hauteur = hauteur_fenetre() // 2
-    CDBX = mileu_fenetre_largeur - (taille_plateau / 2 * taille_case) - taille_case
-    CDBY = milieu_fenetre_hauteur - (taille_plateau / 2 * taille_case) - taille_case
+    coord_bord_x = mileu_fenetre_largeur - (taille_plateau / 2 * taille_case) - taille_case
+    coord_bord_y = milieu_fenetre_hauteur - (taille_plateau / 2 * taille_case) - taille_case
     for y in range(len(b)):
         for x in range(len(b[0])):
             if b[y][x] != 0:
-                X = CDBX + ((x+1) * taille_case) + taille_case/2
-                Y = CDBY + ((y+1) * taille_case) + taille_case/2
+                case_x = coord_bord_x + ((x+1) * taille_case) + taille_case/2
+                case_y = coord_bord_y + ((y+1) * taille_case) + taille_case/2
                 if b[y][x] == 1:
-                    cercle(X,Y,taille_bille, "purple", "purple", tag = "bille_1")
+                    cercle(case_x, case_y,taille_bille, "purple", "purple", tag = "bille_1")
                 elif b[y][x] == 2:
-                    cercle(X, Y, taille_bille, "red", "red", tag = "bille_2")
+                    cercle(case_x, case_y, taille_bille, "red", "red", tag = "bille_2")
                 elif b[y][x] == 3:
-                    cercle(X, Y, taille_bille, "green", "green", tag = "bille_3")
+                    cercle(case_x, case_y, taille_bille, "green", "green", tag = "bille_3")
                 elif b[y][x] == 4:
-                    cercle(X, Y, taille_bille, "grey", "grey", tag = "bille_4")
-    #Enumerate
-                    
+                    cercle(case_x, case_y, taille_bille, "grey", "grey", tag = "bille_4")
+
 def affiche_texte(taille_plateau, taille_case, joueur):
     efface("texte_joueur")
     mileu_fenetre_largeur = largeur_fenetre() // 2
     milieu_fenetre_hauteur = hauteur_fenetre() // 2
-    CDBX = mileu_fenetre_largeur - (taille_plateau / 2 * taille_case) - taille_case
-    CDBY = milieu_fenetre_hauteur - (taille_plateau / 2 * taille_case) - taille_case
+    coord_bord_x = mileu_fenetre_largeur - (taille_plateau / 2 * taille_case) - taille_case
+    coord_bord_y = milieu_fenetre_hauteur - (taille_plateau / 2 * taille_case) - taille_case
     texte_a_afficher = f"Au tour du joueur, {joueur[0]}, de jouer"
     print(texte_a_afficher)
-    texte(CDBX - taille_case, CDBY, texte_a_afficher, "White", tag="texte_joueur", taille=24)
+    texte(coord_bord_x - taille_case, coord_bord_y,
+          texte_a_afficher, "White", tag="texte_joueur", taille=24)
 
-def affiche_jeu(b, plateau, taille_plateau, taille_case, taille_bouton, taille_bille):
+def affichage_tour(joueur, phase_preliminaire, taille_plateau, taille_case):
+    efface("tour")
+    if phase_preliminaire is True:
+        mileu_fenetre_largeur = largeur_fenetre() // 2
+        milieu_fenetre_hauteur = hauteur_fenetre() // 2
+        coord_bord_x = mileu_fenetre_largeur - (taille_plateau / 2 * taille_case) - taille_case
+        coord_bord_y = milieu_fenetre_hauteur - (taille_plateau / 2 * taille_case) - taille_case
+        texte(coord_bord_x, coord_bord_y,
+              f"au joueur {joueur} de joueur", "white", "nw", tag = "tour")
+
+def affiche_jeu(b, phase_preliminaire, joueur, plateau,
+                taille_plateau, taille_case, taille_bouton, taille_bille):
     """
     Affiche l'intégralité des éléments du jeu sur la fenêtre
 
@@ -150,3 +165,4 @@ def affiche_jeu(b, plateau, taille_plateau, taille_case, taille_bouton, taille_b
     affiche_bouton_tirette(taille_plateau, taille_case, taille_bouton)
     affiche_tirette(plateau, taille_plateau, taille_case, taille_bouton)
     affiche_bille(b, taille_plateau, taille_case, taille_bille)
+    affichage_tour(joueur, phase_preliminaire, taille_plateau, taille_case)

@@ -2,7 +2,7 @@ import random
 from fltk import *
 from regles import *
 
-def creation_grille_B_vide():
+def creation_grille_b_vide():
     """
     Retourne un tableau qui contiendra prochainement l'emplacement des billes placés
 
@@ -13,11 +13,11 @@ def creation_grille_B_vide():
     for _ in range(7):
         lst2 = []
         for _ in range(7):
-                lst2.append(0)
+            lst2.append(0)
         lst.append(lst2)
     return lst
 
-def creation_grille_B(plateau):
+def creation_grille_b(plateau):
     valeur = [1] * 7 + [2] * 7
     manquant = len(plateau) ** 2 - len(valeur)
     valeur = valeur + [0] * manquant
@@ -33,10 +33,11 @@ def creation_grille_B(plateau):
             valeur.remove(choix)
         lst.append(lst_ligne)
     return lst
-    
-def creation_grille_H():
+
+def creation_grille_h():
     """
-    Retourne un tableau en 2 dimensions contenant l'emplacement des trous choisis aléatoirement des tirettes horizontaux
+    Retourne un tableau en 2 dimensions contenant l'emplacement des trous
+    choisis aléatoirement des tirettes horizontaux
 
     Returns:
         lst: liste contenant les emplacements des trous choisis aléatoirement
@@ -53,9 +54,10 @@ def creation_grille_H():
         lst.append(lst2)
     return lst
 
-def creation_grille_V():
+def creation_grille_v():
     """
-    Retourne un tableau en 2 dimensions contenant l'emplacement des trous choisis aléatoirement des tirettes verticaux
+    Retourne un tableau en 2 dimensions contenant l'emplacement des trous
+    choisis aléatoirement des tirettes verticaux
 
     Returns:
         lst: liste contenant les emplacements des trous choisis aléatoirement
@@ -83,27 +85,27 @@ def affichage_grille(grille):
         print(x)
     print("")
 
-def deplacer_droite(grille, ligne):
+def deplacer_droite(grille, tirette):
     """
     Décale toutes les valeurs de la liste vers la droite de facon circulaire
 
     Args:
         grille (lst): La grille contenant la tirette qui va avoir ses valeurs décalé
-        ligne (int): La tirette qui va avoir ses valeurs décalé
+        tirette (int): La tirette qui va avoir ses valeurs décalé
     """
-    last_val = grille[ligne].pop()
-    grille[ligne].insert(0, last_val)
+    last_val = grille[tirette].pop()
+    grille[tirette].insert(0, last_val)
 
-def deplacer_gauche(grille, ligne):
+def deplacer_gauche(grille, tirette):
     """
     Décale toutes les valeurs de la liste vers la gauche de facon circulaire
 
     Args:
         grille (lst): La grille contenant la tirette qui va avoir ses valeurs décalé
-        ligne (int): La tirette qui va avoir ses valeurs décalé
+        tirette (int): La tirette qui va avoir ses valeurs décalé
     """
-    first_val = grille[ligne].pop(0)
-    grille[ligne].insert(len(grille[ligne]), first_val)
+    first_val = grille[tirette].pop(0)
+    grille[tirette].insert(len(grille[tirette]), first_val)
 
 def deplacer_bas(grille, colonne):
     """
@@ -131,9 +133,10 @@ def deplacer_haut(grille, colonne):
         grille[x][colonne] = grille[x + 1][colonne]
     grille[len(grille)- 1][colonne] = first_val
 
-def fusion(TV, TH):
+def fusion(tirette_v, tirette_h):
     """
-    Fusionne la couche des tirettes verticales et horizontales pour ne former qu'un tableau en 2 dimensions qui sera affiché au joueur
+    Fusionne la couche des tirettes verticales et horizontales
+    pour ne former qu'un tableau en 2 dimensions qui sera affiché au joueur
 
     Args:
         TV (list): tableaux en 2 dimensions représentant les tirettes verticaux
@@ -142,53 +145,53 @@ def fusion(TV, TH):
     Returns:
         list: Tableau en 2 dimensions représentant les 2 couches de jeu
     """
-    LstVide = []
-    for y in range(len(TV)):
-        LstVide2 = []
-        for x in range(len(TV)):
-            LstVide2.append(TV[y][x] + TH[y][x])
-        LstVide.append(LstVide2)
-    return LstVide
+    lst_vide = []
+    for y in range(len(tirette_v)):
+        lst_vide2 = []
+        for x in range(len(tirette_v)):
+            lst_vide2.append(tirette_v[y][x] + tirette_h[y][x])
+        lst_vide.append(lst_vide2)
+    return lst_vide
 
-def poser_bille(PB,x,y, joueur):
-    PB[y][x] = int(joueur)
+def poser_bille(plateau_bille, x, y, joueur):
+    plateau_bille[y][x] = int(joueur)
 
-def verifier_bille_presente(B, x, y, coord_min_x, coord_min_y, taille_case):
-        X = int((x - coord_min_x) // taille_case) - 1
-        Y = int((y - coord_min_y) // taille_case) - 1
-        print(range(len(B)))
-        if X in range(len(B)) and Y in range(len(B)):
-            if B[Y][X] == 0:
-                return True
-        return False
+def verifier_bille_presente(b, x, y, coord_min_x, coord_min_y, taille_case):
+    case_x = int((x - coord_min_x) // taille_case) - 1
+    case_y = int((y - coord_min_y) // taille_case) - 1
+    if case_x in range(len(b)) and case_y in range(len(b)):
+        if b[case_y][case_x] == 0:
+            return True
+    return False
 
-def gerer_pose_bille(joueur,B, x, y, coord_min_x, coord_min_y, coord_max_x, coord_max_y, taille_case):
+def gerer_pose_bille(joueur, b, x, y, coord_min_x, coord_min_y, coord_max_x, coord_max_y, taille_case):
     if x > coord_min_x + taille_case and x < coord_max_x and y > coord_min_y + taille_case and y < coord_max_y:
-        X = int((x - coord_min_x) // taille_case) - 1
-        Y = int((y - coord_min_y) // taille_case) - 1
-        if verifier_bille_presente(B, x, y, coord_min_x, coord_min_y, taille_case):
-            poser_bille(B, X, Y,joueur)
-    
-def gerer_evenement_tirette(B, V, H, x, y, coord_min_x, coord_min_y, coord_max_x, coord_max_y, taille_case, taille_bouton, hit_box_bouton): 
+        case_x = int((x - coord_min_x) // taille_case) - 1
+        case_y = int((y - coord_min_y) // taille_case) - 1
+        if verifier_bille_presente(b, x, y, coord_min_x, coord_min_y, taille_case):
+            poser_bille(b, case_x, case_y ,joueur)
+
+def gerer_evenement_tirette(b, v, h, x, y, coord_min_x, coord_min_y,
+                            coord_max_x, coord_max_y, taille_case, taille_bouton, hit_box_bouton):
     if x > coord_min_x and x < coord_min_x + taille_case and y > coord_min_y and y < coord_max_y:
-        Y = int((y - coord_min_y) // taille_case) - 1
-        if Y in range(len((B)[0])):
-            deplacer_droite(H, Y)
-            
+        case_y = int((y - coord_min_y) // taille_case) - 1
+        if case_y in range(len((b)[0])):
+            deplacer_droite(h, case_y)
+
     elif x > coord_max_x and x < coord_max_x + taille_bouton * hit_box_bouton  and y > coord_min_y and y < coord_max_y:
-        Y = int((y - coord_min_y) // taille_case) - 1
-        if Y in range(len((B)[0])):
-            deplacer_gauche(H, Y)
-            
+        case_y = int((y - coord_min_y) // taille_case) - 1
+        if case_y in range(len((b)[0])):
+            deplacer_gauche(h, case_y)
+
     elif x > coord_min_x + taille_case and x < coord_max_x and y < coord_min_y + taille_case and y > coord_min_y - taille_bouton * hit_box_bouton:
-        X = int((x - coord_min_x) // taille_case) - 1
-        if X in range(len(B)):
-            deplacer_bas(V, X)
-            
+        case_x = int((x - coord_min_x) // taille_case) - 1
+        if case_x in range(len(b)):
+            deplacer_bas(v, case_x)
+
     elif x > coord_min_x + taille_case and x < coord_max_x and y > coord_max_y and y < coord_max_y + taille_bouton * hit_box_bouton:
-        X = int((x - coord_min_x) // taille_case) - 1
-        if X in range(len(B)):
-            deplacer_haut(V, X)
+        case_x = int((x - coord_min_x) // taille_case) - 1
+        if case_x in range(len(b)):
+            deplacer_haut(v, case_x)
 
 def calcul_coord(taille_case, taille_plateau):
     coord_min_x = largeur_fenetre() / 2 - (taille_plateau /2 * taille_case) - taille_case

@@ -1,26 +1,26 @@
 from tkinter import *
 
 menu = Tk()
-jeu_commence = False
+JEU_COMMENCE = False
 
 def commencer_jeu():
     menu.destroy()
-    global jeu_commence
-    jeu_commence = True
+    global JEU_COMMENCE
+    JEU_COMMENCE = True
 
 def quitter_jeu():
     menu.destroy()
-    
+
 def jeu_est_commence():
-    return jeu_commence
+    return JEU_COMMENCE
 
 def initialiser_menu():
     menu.title("Pièges !")
     menu.geometry("1200x800")
-    
+
     image_fond = PhotoImage(file = "fond_jeu_menu.ppm")
     image_fond_redimensionnee = image_fond.zoom(2)
-    
+
     fond_label = Label(menu, image = image_fond_redimensionnee)
     fond_label.place(x = 0, y = 0, relwidth = 1, relheight = 1)
 
