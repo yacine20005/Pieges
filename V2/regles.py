@@ -1,3 +1,10 @@
+"""
+Module pour la gestion des règles du jeu Pièges.
+
+Ce module contient des fonctions liées aux règles du jeu, telles que la vérification
+de la disparition de billes, la détection de victoire, etc.
+"""
+
 def bille_en_vie(grille_b, grille_h, grille_v):
     """
     Parcourt l'ensemble de la grille pour faire tomber et donc disparaître les billes du plateau
@@ -38,6 +45,15 @@ def victoire(grille_b, phase):
         return True
 
 def creer_liste_joueurs(nombre_joueurs):
+    """
+    Crée une liste de joueurs avec des noms numérotés.
+
+    Args:
+        nombre_joueurs (int): Nombre de joueurs.
+
+    Returns:
+        list: Liste de joueurs.
+    """
     if nombre_joueurs < 1:
         raise ValueError("Le nombre de joueurs doit être supérieur ou égal à 1")
 
