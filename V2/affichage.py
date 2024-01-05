@@ -154,7 +154,7 @@ def affichage_tour(joueur, phase_preliminaire, taille_plateau, taille_case):
         coord_bord_x = mileu_fenetre_largeur - (taille_plateau / 2 * taille_case) - taille_case
         coord_bord_y = milieu_fenetre_hauteur - (taille_plateau / 2 * taille_case) - taille_case
         fltk.texte(coord_bord_x, coord_bord_y - 30,
-              f"au joueur {joueur} de joueur", "white", "nw", tag = "tour", taille = 18)
+              f"au tour de joueur {joueur} de jouer", "white", "nw", tag = "tour", taille = 18)
 
 def affiche_jeu(b, phase_preliminaire, joueur, plateau,
                 taille_plateau, taille_case, taille_bouton, taille_bille):
