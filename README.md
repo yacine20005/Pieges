@@ -22,7 +22,12 @@ This project is a Python implementation of the classic strategy board game **Pi√
 
 ## Installation
 
-To run this game, you need Python 3 and the Tkinter library.
+*   **GUI Library**: fltk module (see `fltk.py`)
+*   **Optional**: Pillow (for enhanced image support)
+
+## Installation
+
+To run this game, you need Python 3. The required `fltk.py` module is included in the repository.
 
 1.  **Clone the repository:**
     ```sh
