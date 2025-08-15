@@ -27,7 +27,7 @@ To run this game, you need Python 3 and the Tkinter library.
 1.  **Clone the repository:**
     ```sh
     git clone <your-repository-url>
-    cd <repository-directory>
+    cd Pieges
     ```
 
 2.  **Ensure Python 3 is installed** on your system.
