@@ -1,7 +1,5 @@
 # Pièges! (Stay Alive!) - A Python Board Game
 
-![Gameplay Screenshot](gameplay.png)
-
 ## Overview
 
 This project is a Python implementation of the classic strategy board game **Pièges!** (also known as "Stay Alive!"). It was developed as a group project for a first-year computer science course at Gustave Eiffel University. The game features a graphical user interface and supports two-player gameplay. The objective is to be the last player with marbles remaining on the board.
